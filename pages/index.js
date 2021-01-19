@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { FullsizeMedium } from "../components/FullsizeMedium"
-import { request } from './api/getDataFromCMS'
+import { FullsizeMedium } from "../components/FullsizeMedium";
+import { request } from './api/getDataFromCMS';
 
 export default function Home({typefaces}) {
 
