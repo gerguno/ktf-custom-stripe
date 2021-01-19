@@ -45,6 +45,13 @@ export default function Navigation() {
                         </a>
                     </Link>
                 </div>
+                <div>
+                    <Link href={`/about`}>
+                        <a>
+                            About
+                        </a>
+                    </Link>
+                </div>
             </nav>
         </>
     )
