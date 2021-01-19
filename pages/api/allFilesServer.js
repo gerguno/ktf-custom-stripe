@@ -1,6 +1,6 @@
-import mime from 'mime'
-import fs from 'fs'
-import archiver from 'archiver'
+import mime from 'mime';
+import fs from 'fs';
+import archiver from 'archiver';
 
 export default async function allFilesServer(req, res) {
     const { zipName, zipFiles, pdfName } = req.body
