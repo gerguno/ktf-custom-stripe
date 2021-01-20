@@ -1,46 +1,50 @@
 import Link from "next/link";
 import { FullsizeMedium } from "../components/FullsizeMedium";
 import { request } from './api/getDataFromCMS';
+import {useEffect} from "react";
 
 export default function Home({typefaces}) {
+    useEffect(()=>{
+        document.body.style.backgroundColor = '#FFFFFF'
+    },[])
 
   return (
       <>
-          {typefaces.map(t => {
-            return (
-                <>
-                    <div className='typeface'>
-                        <div>
-                            <div>{t.releaseTitle}</div>
-                            <div>{t.releaseDate}</div>
+          <div className="logo">
+              KTF
+          </div>
+          <div className="wrapper">
+              {typefaces.map(t => {
+                return (
+                    <>
+                        <div className='home-banner'>
+                            <div>
+                                <div>{t.releaseTitle}</div>
+                            </div>
+                            <div>
+                                <div>
+                                    <Link href={`/[slug]/buy`} as={`/${t.slug}/buy`}>
+                                        <a>Buy</a>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href={`/[slug]`} as={`/${t.slug}`}>
+                                        <a>Look</a>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <div>
-                                <Link href={`/[slug]/buy`} as={`/${t.slug}/buy`}>
-                                    <a>Buy (
-                                        {t.licenses[0] ? `${t.licenses[0].userss[0].price} ` : ''}
-                                        EUR)
-                                    </a>
-                                </Link>
-                            </div>
-                            <div>
-                                <Link href={'mailto:info@kyivtypefoundry.com'}><a>Request Trial</a></Link>
-                            </div>
-                            <div>
-                                <Link href={t.specimen.url}><a target="_blank">Specimen</a></Link>
-                            </div>
+                        <div className="home-media">
+                            <Link href={`/[slug]`} as={`/${t.slug}`}>
+                                <a>
+                                    <FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>
+                                </a>
+                            </Link>
                         </div>
-                    </div>
-                    <Link href={`/[slug]`} as={`/${t.slug}`}>
-                        <a>
-                            <FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>
-                        </a>
-                    </Link>
-
-                </>
-            )
-          })}
-          <div className='footer'>© 2020 Kyiv, Hannover. All rights reserved</div>
+                    </>
+                )
+              })}
+          </div>
       </>
   )
 }

@@ -2,38 +2,50 @@ import Link from "next/link"
 import { request } from '../api/getDataFromCMS'
 import ReactMarkdown from "react-markdown"
 import FadeCarousel from '../../components/FadeCarousel'
+import { useEffect } from "react"
+import {FullsizeMedium} from "../../components/FullsizeMedium";
 
 export default function Index({typeface}) {
-    console.log(typeface)
+    useEffect(()=>{
+        document.body.style.backgroundColor = '#E9E9E9'
+    },[])
+
     return (
         <>
-            <div className='typeface'>
-                <div>
-                    <div>{typeface.releaseTitle}</div>
-                    <div>{typeface.releaseDate}</div>
-                </div>
-                <div>
+            <div className='wrapper'>
+                <div className="slug-banner">
                     <div>
-                        <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
-                            <a>Buy (
-                                {typeface.licenses[0] ? `${typeface.licenses[0].userss[0].price} ` : ''}
-                                EUR)
+                        <Link href={`/`}>
+                            <a>
+                                <img src='/close.svg' alt=""/>
                             </a>
                         </Link>
                     </div>
-                    <div>
-                        <Link href={'mailto:info@kyivtypefoundry.com'}><a>Request Trial</a></Link>
+                    <div className="slug-banner-title">
+                        <div>{typeface.releaseTitle}</div>
                     </div>
                     <div>
-                        <Link href={typeface.specimen.url}><a target="_blank">Specimen</a></Link>
+                        <div>
+                            <span style={{borderBottom: '1px solid black'}}>
+                                Look
+                            </span>
+                        </div>
+                        <div>
+                            <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
+                                <a>Buy</a>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <ReactMarkdown source={typeface.about}/>
-
-            <div className='carousel'>
-                <FadeCarousel media={typeface.aboutMedia}/>
+                <div className="slug-about">
+                    <ReactMarkdown source={typeface.about}/>
+                </div>
+                <div>
+                    <div className='carousel'>
+                        <FadeCarousel media={typeface.aboutMedia}/>
+                    </div>
+                </div>
             </div>
         </>
     )
