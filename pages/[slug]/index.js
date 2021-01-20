@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import {FullsizeMedium} from "../../components/FullsizeMedium";
 
 export default function Index({typeface}) {
-    useEffect(()=>{
+    useEffect(() => {
         document.body.style.backgroundColor = '#E9E9E9'
     },[])
 
@@ -41,10 +41,21 @@ export default function Index({typeface}) {
                 <div className="slug-about">
                     <ReactMarkdown source={typeface.about}/>
                 </div>
-                <div>
-                    <div className='carousel'>
-                        <FadeCarousel media={typeface.aboutMedia}/>
-                    </div>
+
+                <div className="slug-carousel">
+                    <FadeCarousel media={typeface.aboutMedia}/>
+                </div>
+
+                <div className="slug-buttons">
+                    <form action={typeface.specimen.url} target='_blank'>
+                        <button>PDF Specimen</button>
+                    </form>
+                    <form action='mailto:info@kyivtypefoundry.com'>
+                        <button className="primary">Request trial</button>
+                    </form>
+
+
+
                 </div>
             </div>
         </>
