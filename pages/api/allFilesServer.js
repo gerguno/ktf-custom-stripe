@@ -3,7 +3,7 @@ import fs from 'fs';
 import archiver from 'archiver';
 
 export default async function allFilesServer(req, res) {
-    const { zipName, zipFiles, pdfName } = req.body
+    const { zipName, zipFiles, pdfName, purpose } = req.body
 
     // make ZIP
     const zipPath = `././files/_users_files/${zipName}`
@@ -18,14 +18,16 @@ export default async function allFilesServer(req, res) {
         console.log(archive.pointer() + ' total bytes')
         console.log('archiver has been finalized and the output file descriptor has closed.')
 
-        // stream ZIP
-        const mimetype = mime.lookup(zipPath)
-        res.setHeader('Content-disposition', 'attachment; filename=' + zipName)
-        res.setHeader('Content-type', mimetype)
-        const filestream = fs.createReadStream(zipPath)
-        filestream.pipe(res)
-
-        res.status(200).json({ success: `All files ZIP was created: ${zipName}`})
+        if (purpose === 'notEmail') {
+            // stream ZIP
+            const mimetype = mime.lookup(zipPath)
+            res.setHeader('Content-disposition', 'attachment; filename=' + zipName)
+            res.setHeader('Content-type', mimetype)
+            const filestream = fs.createReadStream(zipPath)
+            filestream.pipe(res)
+        } else {
+            res.status(200).json({ success: `All files ZIP was created: ${zipName}`})
+        }
     })
 
     archive.on('error', function(err) {

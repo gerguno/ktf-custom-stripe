@@ -11,7 +11,8 @@ export default function createAndSendAllFiles(order, callback) {
         },
         body: JSON.stringify({
             pdfName: pdfName,
-            order: order
+            order: order,
+            purpose: 'Email'
         })
     })
         .then(res => {
@@ -28,7 +29,8 @@ export default function createAndSendAllFiles(order, callback) {
                 body: JSON.stringify({
                     zipName: name,
                     zipFiles: order.products,
-                    pdfName: pdfName
+                    pdfName: pdfName,
+                    purpose: 'Email'
                 })
             })
                 .then(res => {

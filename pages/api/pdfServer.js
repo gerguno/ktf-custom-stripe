@@ -4,7 +4,7 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer'
 import ReactPDF from '@react-pdf/renderer'
 
 export default async function pdfServer(req, res) {
-    const { pdfName, order } = req.body
+    const { pdfName, order, purpose } = req.body
     const pdfPath = `././files/_users_files/${pdfName}`
 
     // Create styles
@@ -41,13 +41,15 @@ export default async function pdfServer(req, res) {
     )
 
     ReactPDF.render(<MyDocument />, pdfPath, () => {
-        const mimetype = mime.lookup(pdfPath)
-        res.setHeader('Content-disposition', 'attachment; filename=' + pdfPath)
-        res.setHeader('Content-type', mimetype)
-        const filestream = fs.createReadStream(pdfPath)
-        filestream.pipe(res)
-
-        res.status(200).json({ success: `License was created: ${pdfName}`})
+        if (purpose === 'notEmail') {
+            const mimetype = mime.lookup(pdfPath)
+            res.setHeader('Content-disposition', 'attachment; filename=' + pdfPath)
+            res.setHeader('Content-type', mimetype)
+            const filestream = fs.createReadStream(pdfPath)
+            filestream.pipe(res)
+        } else {
+            res.status(200).json({ success: `License was created: ${pdfName}`})
+        }
     })
 
 }

@@ -11,7 +11,8 @@ export default function GetAllFiles({order}) {
             },
             body: JSON.stringify({
                 pdfName: pdfName,
-                order: order
+                order: order,
+                purpose: 'notEmail'
             })
         })
             .then(res => {
@@ -23,7 +24,8 @@ export default function GetAllFiles({order}) {
                     body: JSON.stringify({
                         zipName: name,
                         zipFiles: order.products,
-                        pdfName: pdfName
+                        pdfName: pdfName,
+                        purpose: 'notEmail'
                     })
                 })
                     .then(response => {

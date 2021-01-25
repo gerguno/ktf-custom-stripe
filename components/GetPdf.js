@@ -10,7 +10,8 @@ export default function GetPdf({order}) {
             },
             body: JSON.stringify({
                 pdfName: name,
-                order: order
+                order: order,
+                purpose: 'notEmail'
             })
         })
             .then(response => {
