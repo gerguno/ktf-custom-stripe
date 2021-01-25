@@ -10,30 +10,9 @@ export default function Home({typefaces}) {
 
   return (
       <>
-          <div className="logo">
-              KTF
-          </div>
-          <div className="wrapper">
               {typefaces.map(t => {
                 return (
                     <>
-                        <div className='home-banner'>
-                            <div>
-                                <div>{t.releaseTitle}</div>
-                            </div>
-                            <div>
-                                <div>
-                                    <Link href={`/[slug]/buy`} as={`/${t.slug}/buy`}>
-                                        <a>Buy</a>
-                                    </Link>
-                                </div>
-                                <div>
-                                    <Link href={`/[slug]`} as={`/${t.slug}`}>
-                                        <a>Look</a>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
                         <div className="home-media">
                             <Link href={`/[slug]`} as={`/${t.slug}`}>
                                 <a>
@@ -44,7 +23,6 @@ export default function Home({typefaces}) {
                     </>
                 )
               })}
-          </div>
       </>
   )
 }

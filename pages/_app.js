@@ -4,7 +4,7 @@ import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import UserContextProvider from "../contexts/UserContext";
-import Navigation from "../components/Navigation";
+import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 
 class MyApp extends App {
@@ -15,7 +15,7 @@ class MyApp extends App {
             <Head>
             </Head>
             <UserContextProvider>
-                <Navigation />
+                <Menu/>
                     <Component {...pageProps} />
                 <Footer/>
             </UserContextProvider>
