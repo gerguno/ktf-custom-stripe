@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from "react"
 import { Font } from "./Font"
 import { FontFamily } from "./FontFamily"
 import { Total } from "./Total"
+import Dropdown from "react-dropdown";
+import options from "../countries.json";
 
 export function Typeface({typeface}) {
     const { product, storeProduct, resetProduct } = useContext(ProductContext)
@@ -22,6 +24,7 @@ export function Typeface({typeface}) {
     }
 
     useEffect(() => {
+        console.log(typeface.licenses[0].userss)
         storeProduct(defaultProduct)
     }, [])
 
@@ -68,55 +71,77 @@ export function Typeface({typeface}) {
 
     return (
         <>
-            <div className="buy-container">
-                <div className="buy-caption">
-                    <p>Select your cuts and license type</p>
-                </div>
-                <div className="buy-licenses">
-                    {typeface.fonts.map(f => {
-                        return (
-                            <div className="buy-licenses-fonts">
-                                <div className="buy-licenses-fonts-title">
-                                    {f.fontTitle}
-                                </div>
-                                <div className="buy-licenses-fonts-checkboxes">
-                                    {typeface.licenses.map(pl => {
-                                        return (
-                                            <Font
-                                                name={f.fontTitle}
-                                                license={pl.licenseTitle}
-                                                value={pl.userss[product.users.option-1].price}
-                                            />
-                                        )
-                                    })}
-                                </div>
+            <div className="buy">
+                <div className="buy-container">
+                    <div className="buy-caption">
+                        Select your cuts and license type
+                    </div>
+                    <div className="buy-licenses">
+                        <div className="buy-licenses-labels">
+                            <div>Item</div>
+                            <div className="desktop-web">
+                                <div>Desktop</div>
+                                <div>Web</div>
                             </div>
-                        )
-                    })}
+                        </div>
+                        {typeface.fonts.map(f => {
+                            return (
+                                <div className="buy-licenses-fonts">
+                                    <div className="buy-licenses-fonts-title">
+                                        {f.fontTitle}
+                                    </div>
+                                    <div className="buy-licenses-fonts-checkboxes">
+                                        {typeface.licenses.map(pl => {
+                                            return (
+                                                <Font
+                                                    name={f.fontTitle}
+                                                    license={pl.licenseTitle}
+                                                    value={pl.userss[product.users.option-1].price}
+                                                />
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className="buy-licenses-fontfamily">
+                            <div className="buy-licenses-fonts-title">
+                                {typeface.familyPackage.familyPackageTitle}
+                            </div>
+                            <div className="buy-licenses-fonts-checkboxes">
+                                {typeface.familyPackage.familyPackageLicenses.map(fpl => {
+                                    return (
+                                        <FontFamily
+                                            name={typeface.familyPackage.familyPackageTitle}
+                                            license={fpl.licenseTitle}
+                                            value={fpl.userss[product.users.option-1].price}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <p>{typeface.familyPackage.familyPackageTitle}</p>
-                    {typeface.familyPackage.familyPackageLicenses.map(fpl => {
-                        return (
-                            <>
-                                <FontFamily
-                                    name={typeface.familyPackage.familyPackageTitle}
-                                    license={fpl.licenseTitle}
-                                    value={fpl.userss[product.users.option-1].price}
-                                />
-                            </>
-                        )
-                    })}
+                <div className="buy-container">
+                    <div className="buy-caption">
+                        Adjust number of people who are going to use it
+                    </div>
+                    <div className="buy-users">
+                        <select className="dropdown" onChange={handleUserSelect}>
+                            {typeface.licenses[0].userss.map(u => {
+                                return (
+                                    <option value={u.option} defaultValue={1}> {u.title} </option>
+                                )
+                            })}
+                        </select>
+                        <p>
+                            None of the above licenses cover your use case? <br/>
+                            <a href="mailto:info@kyivtypefoundry.com">Contact us</a> for more licensing options (logos, broadcasting, digital publishing, …)
+                        </p>
+                    </div>
                 </div>
             </div>
-
-
-            <select onChange={handleUserSelect}>
-                {typeface.licenses[0].userss.map(u => {
-                    return (
-                        <option value={u.option} defaultValue={1}> {u.title} </option>
-                    )
-                })}
-            </select>
 
             <Total typeface={typeface}/>
 

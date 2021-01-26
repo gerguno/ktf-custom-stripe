@@ -52,6 +52,7 @@ export function FontFamily({ name, license, value }) {
             <input type="checkbox"
                    checked={favorite}
                    name={license}
+                   className={license}
                    value={value}
                    onChange={toggleFont}
             />

@@ -46,19 +46,18 @@ export function Total({ typeface }) {
     }
 
     return (
-        <>
-            <p>Eventual tax on license will be calculated at checkout</p>
-            <h2>Total: {total} EUR</h2>
+        <div className="total">
+            <div className="buy-container">
+                <div className="buy-caption">
+                    Eventual tax on license will be calculated at checkout
+                </div>
 
-            <p>
-                {JSON.stringify(product,null, '\t')}
-                <br/><br/><br/><br/>
-                {JSON.stringify(user)}
-            </p>
+                Total: {total} euro
 
-            <button onClick={addToCart}>
-                Add to Cart
-            </button>
-        </>
+                <button className="darkgrey" onClick={addToCart}>
+                    Add to Cart
+                </button>
+            </div>
+        </div>
     )
 }

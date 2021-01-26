@@ -15,6 +15,10 @@ body {
   margin: auto;
 }
 
+main {
+  min-height: calc(100vh - 50px);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -146,6 +150,7 @@ nav.menu-opened {
 .wrapper {
   width: $wrapper-width;
   margin: 0 auto;
+  padding-bottom: 200px;
 }
 
 .with-right-border {
@@ -155,7 +160,7 @@ nav.menu-opened {
 // Footer
 .footer {
   width: calc(100vw - (100vw - 100%));
-  padding: 210px 20px 15px 20px;
+  padding: 10px 20px 15px 20px;
   font-size: 14px;
   letter-spacing: 0.2px;
   //position: fixed;
@@ -181,12 +186,12 @@ button {
   border-radius: 20px;
   padding: 4px 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.25s;
   width: 250px;
 }
 
 button:hover {
-  filter: contrast(115%);
+  filter: contrast(110%);
 }
 
 button:focus {
@@ -206,6 +211,46 @@ button:disabled {
   background: #FF6BF0;
   color: #FF0000;
   box-shadow: 0px 0px 13px rgba(255, 24, 24, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+}
+
+// Dropdown
+.dropdown {
+  display: block;
+  font-family: 'Forma', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  font-size: 17px;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+
+  width: 214px;
+  height: 30px;
+  padding: 0 0 0 20px;
+
+  background: #ECECEC;
+  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-image: url('/dropdown_arrow.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: right 20px top 50%, 0 0;
+  transition: 0.25s;
+}
+
+.dropdown:hover {
+  filter: contrast(105%);
+}
+
+.dropdown:focus {
+  border: none;
+  outline: none;
 }
 
 // PAGES
@@ -303,22 +348,31 @@ button:disabled {
 }
 
 // Buy
+.buy, .total {
+  margin: 50px 40px 0 0;
+}
+
+.buy {
+  border-bottom: 2px solid #000000;
+}
+
 .buy-container {
   display: flex;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .buy-caption {
   width: 50%;
   text-transform: lowercase;
   color: #696969;
+  display: flex;
 }
 
-.buy-licenses {
+.buy-licenses, .buy-users {
   width: 50%;
 }
 
-.buy-licenses-fonts, .buy-licenses-fonts-checkboxes{
+.buy-licenses-fonts, .buy-licenses-fontfamily, .buy-licenses-fonts-checkboxes{
   display: flex;
 }
 
@@ -327,10 +381,10 @@ button:disabled {
 }
 
 .buy-licenses-fonts-checkboxes {
-  margin: 2px 20px 0 auto;
+  margin: 2px 6px 0 auto;
 
   input[type='checkbox'] {
-    margin-left: 20px;
+    margin-left: 70px;
   }
 
   input[type='checkbox']:after{
@@ -370,6 +424,54 @@ button:disabled {
   }
 
 }
+
+.buy-licenses-fontfamily {
+  margin: 20px 0;
+}
+
+.buy-users {
+  margin: -4px 0;
+}
+
+.buy-users p {
+  color: #696969;
+}
+
+.buy-users a {
+  text-decoration: none;
+  border-bottom: 2px solid #696969;
+  transition: 0.25s;
+}
+
+.buy-users a:hover {
+  color: #696969;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+.total button {
+  margin: -4px 0 0 auto;
+}
+
+.buy-licenses-labels {
+  width: 100%;
+  text-transform: lowercase;
+  color: #696969;
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 10px;
+
+  .desktop-web {
+    display: flex;
+    margin: 0 0 0 auto;
+    padding-right: 2px;
+  }
+
+  .desktop-web > div{
+    margin-left: 58px;
+  }
+}
+
 
 
 
