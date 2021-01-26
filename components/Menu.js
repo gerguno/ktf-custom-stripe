@@ -40,7 +40,6 @@ export default function Menu() {
 
     useEffect(() => {
         const handleRouteChange = (url) => {
-            // console.log(`App is changing to ${url}`)
             if (router.pathname !== url) {
                 logo === logoUrls[0] ? setLogo(logoUrls[1]) : setLogo(logoUrls[0])
             }
@@ -50,7 +49,7 @@ export default function Menu() {
 
     return (
         <>
-            <nav className={open ? 'menu-opened' : ''} ref={nav}>
+            <nav className={`menu${open ? ' menu-opened' : ''}`} ref={nav}>
                 <div id='bar'>
                     <div id='bar-logo' className={open ? 'bar-logo-white' : ''}>
                         <Link href={`/`}>

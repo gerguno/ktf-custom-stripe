@@ -4,61 +4,49 @@ import ReactMarkdown from "react-markdown"
 import FadeCarousel from '../../components/FadeCarousel'
 import { useEffect } from "react"
 import {FullsizeMedium} from "../../components/FullsizeMedium";
+import {MainLayout} from "../../components/MainLayout";
 
 export default function Index({typeface}) {
-    useEffect(() => {
-        document.body.style.backgroundColor = '#E9E9E9'
+    useEffect(()=>{
+        document.body.style.backgroundColor = '#FFFFFF'
     },[])
-
     return (
-        <>
+        <MainLayout title={typeface.releaseTitle}>
+            <div className="slug-nav">
+                <div>{typeface.releaseTitle}</div>
+            </div>
+            <div className="slug-buy">
+                <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
+                    <button className="pink">Buy</button>
+                </Link>
+            </div>
+
             <div className='wrapper'>
-                <div className="slug-banner">
-                    <div>
-                        <Link href={`/`}>
-                            <a>
-                                <img src='/close.svg' alt=""/>
-                            </a>
-                        </Link>
-                    </div>
-                    <div className="slug-banner-title">
-                        <div>{typeface.releaseTitle}</div>
-                    </div>
-                    <div>
-                        <div>
-                            <span style={{borderBottom: '1px solid black'}}>
-                                Look
-                            </span>
-                        </div>
-                        <div>
-                            <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
-                                <a>Buy</a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="slug-about">
-                    <ReactMarkdown source={typeface.about}/>
-                </div>
-
                 <div className="slug-carousel">
                     <FadeCarousel media={typeface.aboutMedia}/>
                 </div>
 
                 <div className="slug-buttons">
                     <form action={typeface.specimen.url} target='_blank'>
-                        <button>PDF Specimen</button>
+                        <button className="darkgrey">PDF Specimen</button>
                     </form>
                     <form action='mailto:info@kyivtypefoundry.com'>
-                        <button className="primary">Request trial</button>
+                        <button>Request trial</button>
                     </form>
+                </div>
 
-
-
+                <div className="slug-about">
+                    <div className="slug-about-text">
+                        <ReactMarkdown source={typeface.about}/>
+                    </div>
+                    {typeface.footnote &&
+                        <div className="slug-about-footnote">
+                            <ReactMarkdown source={typeface.footnote}/>
+                        </div>
+                    }
                 </div>
             </div>
-        </>
+        </MainLayout>
     )
 }
 
@@ -92,6 +80,7 @@ query ($slug: String) {
     aboutMedia {
       url
     }
+    footnote
     specimen {
       url
     }

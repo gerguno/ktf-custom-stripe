@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FullsizeMedium } from "../components/FullsizeMedium";
 import { request } from './api/getDataFromCMS';
 import {useEffect} from "react";
+import {MainLayout} from "../components/MainLayout"
 
 export default function Home({typefaces}) {
     useEffect(()=>{
@@ -9,21 +10,21 @@ export default function Home({typefaces}) {
     },[])
 
   return (
-      <>
-              {typefaces.map(t => {
-                return (
-                    <>
-                        <div className="home-media">
-                            <Link href={`/[slug]`} as={`/${t.slug}`}>
-                                <a>
-                                    <FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>
-                                </a>
-                            </Link>
-                        </div>
-                    </>
-                )
-              })}
-      </>
+      <MainLayout>
+          {typefaces.map(t => {
+              return (
+                  <>
+                      <div className="home-media">
+                          <Link href={`/[slug]`} as={`/${t.slug}`}>
+                              <a>
+                                  <FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>
+                              </a>
+                          </Link>
+                      </div>
+                  </>
+              )
+          })}
+      </MainLayout>
   )
 }
 

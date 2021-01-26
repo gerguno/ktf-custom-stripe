@@ -2,8 +2,12 @@ import Link from "next/link"
 import { request } from '../api/getDataFromCMS'
 import { Typeface } from '../../components/Typeface'
 import ProductContextProvider from "../../contexts/ProductContext";
+import {useEffect} from "react";
 
 export default function Buy({typeface}) {
+    useEffect(() => {
+        document.body.style.backgroundColor = '#E9E9E9'
+    },[])
     return (
         <ProductContextProvider>
             <Typeface typeface={typeface}/>

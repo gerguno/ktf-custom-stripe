@@ -1,4 +1,4 @@
-$wrapper-width: 82vw;
+$wrapper-width: 80vw;
 $nav-margin-left: 20px;
 
 * {
@@ -142,10 +142,28 @@ nav.menu-opened {
   position: fixed;
 }
 
+// Footer
+.footer {
+  width: calc(100vw - (100vw - 100%));
+  padding: 210px 20px 15px 20px;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  //position: fixed;
+  //bottom: 10px;
+}
+
+.footer div {
+  display: inline-block;
+}
+
+.footer > div:last-child {
+  float: right;
+}
+
 
 // Buttons
 button {
-  background: #BEBEBE;
+  background: #E8E8E8;
   font-family: inherit;
   font-size: inherit;
   border: 0;
@@ -170,27 +188,16 @@ button:disabled {
   cursor: default;
 }
 
-.primary {
-  background: #30B900;
-  margin-left: 16px;
+.darkgrey {
+  background: #BABABA;
 }
 
-.footer {
-  width: calc(100vw - (100vw - 100%));
-  padding: 120px 10px 6px 10px;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  //position: fixed;
-  //bottom: 10px;
+.pink {
+  background: #FF6BF0;
+  color: #FF0000;
+  box-shadow: 0px 0px 13px rgba(255, 24, 24, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
 }
 
-.footer div {
-  display: inline-block;
-}
-
-.footer > div:last-child {
-  float: right;
-}
 
 // Homepage
 .home-media a {
@@ -215,40 +222,27 @@ button:disabled {
   transform: translateX(-50%) translateY(-50%);
 }
 
-.slug-banner div {
-  display: inline-block;
+// Slug
+.wrapper {
+  width: $wrapper-width;
+  margin: 0 auto;
 }
 
-.slug-banner > div:last-child {
-  float: right;
+.slug-nav {
+  padding: 5px 10px;
 }
 
-.slug-banner > div:last-child > div {
-  padding-left: $nav-margin-left;
+.slug-buy {
+  position: fixed;
+  z-index: 1;
+  top: 53px;
+  right: 8px;
 }
 
-.slug-banner-title {
-  width: 85%;
-  //background: yellow;
-  text-align: center;
-  margin: 0 10px 0 30px;
-}
-
-.slug-about {
-  padding: 40px 120px 80px 120px;
-  column-count: 2;
-  column-gap: 40px;
-  border-bottom: 1px solid black;
-}
-
-.slug-about p:first-child {
-  margin-top: 0;
-}
-
-/* carousel */
+// Carousel
 .slug-carousel {
   display: block;
-  margin: 80px 0;
+  margin: 66px 0 18px 0;
   width: $wrapper-width;
   height: $wrapper-width * 0.707;
   box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
@@ -262,9 +256,37 @@ button:disabled {
 .slug-buttons {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
+.slug-buttons form:last-child {
+  margin-left: 8px;
+}
+.slug-about {
+  padding: 80px 120px 30px 120px;
+  border-bottom: 2px solid black;
+}
+
+.slug-about p:first-child {
+  margin-top: 0;
+}
+
+.slug-about-text {
+  column-count: 2;
+  column-gap: 40px;
+}
+
+.slug-about-footnote {
+  width: calc((100% / 2) - 20px);
+  margin-left: calc((100% / 2) + 20px);
+  font-size: 14px;
+  line-height: 17px;
+  padding: 62px 0 0 0;
+}
+
+.slug-about-footnote p {
+  margin: 0;
+}
+
 
 
 /* dropdown */
