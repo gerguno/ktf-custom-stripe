@@ -55,9 +55,6 @@ export function FontFamily({ name, license, value }) {
                    value={value}
                    onChange={toggleFont}
             />
-            <label>{license}  ({value} EUR)</label>
-            <br/>
-            <h6>{name}. {license}: {value}, {favorite ? 'favorite: true' : 'favorite: false'}</h6>
         </>
     )
 }

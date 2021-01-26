@@ -10,9 +10,17 @@ export default function Index({typeface}) {
     useEffect(()=>{
         document.body.style.backgroundColor = '#FFFFFF'
     },[])
+
     return (
         <MainLayout title={typeface.releaseTitle}>
             <div className="slug-nav">
+                <div>
+                    <Link href={`/`}>
+                        <a>
+                            <img src="/close.svg" alt=""/>
+                        </a>
+                    </Link>
+                </div>
                 <div>{typeface.releaseTitle}</div>
             </div>
             <div className="slug-buy">

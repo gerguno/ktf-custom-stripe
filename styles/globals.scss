@@ -48,7 +48,7 @@ nav > div {
 }
 
 #bar-logo {
-  margin: 9px 0 0 7px;
+  margin: 9px 0 0 8px;
 }
 
 #bar-logo a:hover {
@@ -142,6 +142,16 @@ nav.menu-opened {
   position: fixed;
 }
 
+// Wrapper
+.wrapper {
+  width: $wrapper-width;
+  margin: 0 auto;
+}
+
+.with-right-border {
+  border-right: 2px solid black;
+}
+
 // Footer
 .footer {
   width: calc(100vw - (100vw - 100%));
@@ -198,7 +208,7 @@ button:disabled {
   box-shadow: 0px 0px 13px rgba(255, 24, 24, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
 }
 
-
+// PAGES
 // Homepage
 .home-media a {
   text-decoration: none;
@@ -223,13 +233,18 @@ button:disabled {
 }
 
 // Slug
-.wrapper {
-  width: $wrapper-width;
-  margin: 0 auto;
+.slug-nav {
+  padding: 7px 20px;
+  display: flex;
 }
 
-.slug-nav {
-  padding: 5px 10px;
+.slug-nav > div:first-child {
+  margin: 1px 12px 0 0;
+  transition: 0.25s;
+}
+
+.slug-nav > div:first-child:hover {
+  opacity: 0.5;
 }
 
 .slug-buy {
@@ -286,6 +301,73 @@ button:disabled {
 .slug-about-footnote p {
   margin: 0;
 }
+
+// Buy
+.buy-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.buy-caption {
+  width: 50%;
+  text-transform: lowercase;
+  color: #696969;
+}
+
+.buy-licenses {
+  width: 50%;
+}
+
+.buy-licenses-fonts, .buy-licenses-fonts-checkboxes{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.buy-licenses-fonts-checkboxes {
+  margin: 0 20px 0 auto;
+
+  input[type='checkbox'] {
+    margin-left: 20px;
+  }
+
+  input[type='checkbox']:after{
+    line-height: 1.5em;
+    content: '';
+    cursor: pointer;
+    display: inline-block;
+    margin-top: -6px;
+    margin-left: -6px;
+    width: 26px;
+    height: 26px;
+    background: #ECECEC;
+    //opacity: 0.7;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    transition: 0.25s;
+  }
+
+  input[type='checkbox']:hover:after{
+    background: #ECECEC;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  input[type='checkbox']:checked:after{
+    background: #FF6B00;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  .Desktop:checked:after {
+    background: #FF6B00;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  .Web:checked:after  {
+    background: #21AEFD !important;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+  }
+
+}
+
 
 
 

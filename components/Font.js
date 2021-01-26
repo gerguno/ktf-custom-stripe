@@ -53,12 +53,10 @@ export function Font({ name, license, value }) {
             <input type="checkbox"
                    checked={favorite}
                    name={license}
+                   className={license}
                    value={value}
                    onChange={toggleFont}
             />
-            <label>{license}  ({value} EUR)</label>
-            <br/>
-            <h6>{name}. {license}: {value}, {favorite ? 'favorite: true' : 'favorite: false'}</h6>
         </>
     )
 }

@@ -3,15 +3,31 @@ import { request } from '../api/getDataFromCMS'
 import { Typeface } from '../../components/Typeface'
 import ProductContextProvider from "../../contexts/ProductContext";
 import {useEffect} from "react";
+import {MainLayout} from "../../components/MainLayout";
 
 export default function Buy({typeface}) {
     useEffect(() => {
         document.body.style.backgroundColor = '#E9E9E9'
     },[])
+
     return (
-        <ProductContextProvider>
-            <Typeface typeface={typeface}/>
-        </ProductContextProvider>
+        <MainLayout title={`${typeface.releaseTitle} Checkout`}>
+            <div className="slug-nav">
+                <div>
+                    <Link href={`/`}>
+                        <a>
+                            <img src="/close.svg" alt=""/>
+                        </a>
+                    </Link>
+                </div>
+                <div>{`${typeface.releaseTitle} Checkout`}</div>
+            </div>
+            <div className="wrapper with-right-border">
+                <ProductContextProvider>
+                    <Typeface typeface={typeface}/>
+                </ProductContextProvider>
+            </div>
+        </MainLayout>
     )
 }
 

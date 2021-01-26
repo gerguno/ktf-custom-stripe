@@ -68,39 +68,47 @@ export function Typeface({typeface}) {
 
     return (
         <>
-            <h1>Buy {typeface.title}</h1>
+            <div className="buy-container">
+                <div className="buy-caption">
+                    <p>Select your cuts and license type</p>
+                </div>
+                <div className="buy-licenses">
+                    {typeface.fonts.map(f => {
+                        return (
+                            <div className="buy-licenses-fonts">
+                                <div className="buy-licenses-fonts-title">
+                                    {f.fontTitle}
+                                </div>
+                                <div className="buy-licenses-fonts-checkboxes">
+                                    {typeface.licenses.map(pl => {
+                                        return (
+                                            <Font
+                                                name={f.fontTitle}
+                                                license={pl.licenseTitle}
+                                                value={pl.userss[product.users.option-1].price}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        )
+                    })}
 
-            {typeface.fonts.map(f => {
-                return (
-                    <>
-                        <h4>{f.fontTitle}</h4>
-                        {typeface.licenses.map(pl => {
-                            return (
-                                <>
-                                    <Font
-                                        name={f.fontTitle}
-                                        license={pl.licenseTitle}
-                                        value={pl.userss[product.users.option-1].price}
-                                    />
-                                </>
-                            )
-                        })}
-                    </>
-                )
-            })}
+                    <p>{typeface.familyPackage.familyPackageTitle}</p>
+                    {typeface.familyPackage.familyPackageLicenses.map(fpl => {
+                        return (
+                            <>
+                                <FontFamily
+                                    name={typeface.familyPackage.familyPackageTitle}
+                                    license={fpl.licenseTitle}
+                                    value={fpl.userss[product.users.option-1].price}
+                                />
+                            </>
+                        )
+                    })}
+                </div>
+            </div>
 
-            <h4>{typeface.familyPackage.familyPackageTitle}</h4>
-            {typeface.familyPackage.familyPackageLicenses.map(fpl => {
-                return (
-                    <>
-                        <FontFamily
-                            name={typeface.familyPackage.familyPackageTitle}
-                            license={fpl.licenseTitle}
-                            value={fpl.userss[product.users.option-1].price}
-                        />
-                    </>
-                )
-            })}
 
             <select onChange={handleUserSelect}>
                 {typeface.licenses[0].userss.map(u => {
