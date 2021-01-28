@@ -12,7 +12,7 @@ export default function Index({typeface}) {
     },[])
 
     return (
-        <MainLayout title={typeface.releaseTitle}>
+        <MainLayout title={`${typeface.releaseTitle} • Kyiv Type Foundry`}>
             <div className="slug-nav">
                 <div>
                     <Link href={`/`}>

@@ -70,7 +70,7 @@ export default function Menu() {
                                 }
                             </a>
                         </Link>
-                        <button ref={menuOpen} id="bar-menu-open" onClick={toggleMenu}>
+                        <button ref={menuOpen} id="bar-menu-open" className={open ? 'inset' : ''} onClick={toggleMenu}>
                             {!open
                                 ?
                                     <img src='/more.svg' alt=''/>

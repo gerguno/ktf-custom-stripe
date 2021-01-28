@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from "react"
 import { loadStripe } from "@stripe/stripe-js"
 import {CardElement, Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from "../components/CheckoutForm"
+import {MainLayout} from "../components/MainLayout";
+import Link from "next/link";
 
 const promise = loadStripe("pk_test_51Hv5XCLUcU5ulJ9ybKRoOJupbE3qVziQqJCO66oYMHnRXAMolGpv2aKFw6t3r7fct4wB33O3gfE63dubwE0kJDh500wXZVkgvF")
 
@@ -27,6 +29,7 @@ export default function Cart() {
 
     useEffect(() => {
         calcTotal()
+        document.body.style.backgroundColor = '#FFFFFF'
     }, [])
 
     const removeProduct = (e, key) => {
@@ -41,41 +44,81 @@ export default function Cart() {
     }
 
     return (
-        <>
-            <h2>Cart</h2>
+        <MainLayout title={'Cart • Kyiv Type Foundry'}>
+            <div className="slug-nav violet">
+                <div>You’re in a few steps away from having completed your order</div>
+            </div>
 
             {user.products.length > 0
                 ?
-                    <>
-                        <ol>
+                    <div className="wrapper">
+                        <div className="cart-items">
                             {user.products.map((up, key) => {
                                 return (
-                                    <li>
-                                        Name: {up.name} <br/>
-                                        License: {up.license} <br/>
-                                        Price: {up.price} <br/>
-                                        Users: {up.users} <br/>
-                                        <a onClick={(e) => {
-                                            removeProduct(e, key)
-                                        }}>
-                                            Remove
-                                        </a>
-                                    </li>
+                                    <div className="cart-item">
+                                        <div className="cart-item-left">
+                                            <div>{up.name}</div>
+                                            <div>{up.license}</div>
+                                            <div>{up.users}</div>
+                                        </div>
+                                        <div className="cart-item-right">
+                                            <div>{up.price} Eur</div>
+                                            <div>
+                                                <a onClick={(e) => {
+                                                    removeProduct(e, key)
+                                                }}>
+                                                    <img src="/close.svg" alt=""/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 )
                             })}
-                        </ol>
-                        <h3>Subtotal: {user.subtotal} EUR</h3>
-                        <h3>VAT {user.tax}%*</h3>
-                        <h3>Total: {user.total} EUR</h3>
+                        </div>
+                        <div className="cart-total">
+                            <div className="cart-total-field">
+                                <div>
+                                    VAT{user.tax}%*
+                                </div>
+                                <div>
+                                    {(user.subtotal * vat).toFixed(2)} Eur
+                                </div>
+                            </div>
+                            <div className="cart-total-field">
+                                <div>
+                                    Subtotal
+                                </div>
+                                <div>
+                                    {user.subtotal} Eur
+                                </div>
+                            </div>
+                            <div className="cart-total-field">
+                                <div>
+                                    Total
+                                </div>
+                                <div>
+                                    {user.total} Eur
+                                </div>
+                            </div>
+                        </div>
+
                         <Elements stripe={promise}>
                             <CheckoutForm />
                         </Elements>
-                    </>
+                    </div>
                 :
-                    <p>
-                        Your cart is empty.
-                    </p>
+                    <div className="wrapper empty">
+                        <p>
+                            {`The cart is now empty. `}
+                            <Link href={'/'}>
+                                <a>
+                                    Select some products
+                                </a>
+                            </Link>
+                            {` to buy before checking out.`}
+                        </p>
+                    </div>
             }
-        </>
+        </MainLayout>
     )
 }

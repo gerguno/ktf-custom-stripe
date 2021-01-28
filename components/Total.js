@@ -52,7 +52,7 @@ export function Total({ typeface }) {
                     Eventual tax on license will be calculated at checkout
                 </div>
 
-                Total: {total} euro
+                Total: {total} Eur
 
                 <button className="darkgrey" onClick={addToCart}>
                     Add to Cart

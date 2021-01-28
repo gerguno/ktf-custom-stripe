@@ -92,8 +92,7 @@ nav > div {
   margin-right: 8px;
   cursor: pointer;
   background: #ECECEC;
-  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 2px 2px 2px rgba(255, 255, 255, 0.7);
-  filter: contrast(100%) !important;
+  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   text-decoration: none;
   border: 0;
@@ -101,10 +100,16 @@ nav > div {
 }
 
 #bar-menu-open:hover {
-  background: #F1F1F1;
-  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -2px -2px 2px rgba(255, 255, 255, 0.7);
+  background: #ECECEC;
+  filter: contrast(110%);
+  //box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
   border-radius: 16px;
 }
+
+.inset {
+  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7) !important;
+}
+
 
 nav.menu-opened {
   height: 181px;
@@ -155,6 +160,17 @@ nav.menu-opened {
 
 .with-right-border {
   border-right: 2px solid black;
+}
+
+.wrapper a {
+  border-bottom: 2px solid black;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.wrapper a:hover {
+  border-bottom: 2px solid rgba(0,0,0,0);
+  color: black !important;
 }
 
 // Footer
@@ -283,6 +299,10 @@ button:disabled {
   display: flex;
 }
 
+.violet {
+  color: #A40089 !important;
+}
+
 .slug-nav > div:first-child {
   margin: 1px 12px 0 0;
   transition: 0.25s;
@@ -404,8 +424,9 @@ button:disabled {
   }
 
   input[type='checkbox']:hover:after{
-    background: #ECECEC;
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+    filter: contrast(108%);
+    //background: #ECECEC;
+    //box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
   }
 
   input[type='checkbox']:checked:after{
@@ -444,7 +465,7 @@ button:disabled {
 }
 
 .buy-users a:hover {
-  color: #696969;
+  color: #696969 !important;
   text-decoration: none;
   border-bottom: 2px solid rgba(0,0,0,0);
 }
@@ -472,8 +493,61 @@ button:disabled {
   }
 }
 
+// Cart
+.cart-items {
+  padding: 50px 0;
+  border-bottom: 2px solid black;
+}
 
+.cart-item {
+  display: flex;
+  padding-bottom: 3px;
+}
 
+.cart-item-left {
+  display: inline-grid;
+  grid-template-columns: 240px 150px 150px;
+}
+
+.cart-item-right {
+  display: flex;
+}
+
+.cart-item-right {
+  margin: 0 0 0 auto;
+}
+
+.cart-item-right > div {
+  text-align: right;
+  margin: 0 0 0 18px;
+}
+
+.cart-item-right > div:last-child {
+  margin-top: 1px;
+}
+
+.cart-item-right a {
+  border-bottom: 0 !important;
+}
+
+.cart-item-right a:hover {
+  opacity: 0.5;
+}
+
+.cart-total {
+  padding: 40px 0;
+  border-bottom: 2px solid black;
+}
+
+.cart-total-field {
+  display: flex;
+  padding-bottom: 4px;
+}
+
+.cart-total-field > div:last-child {
+  margin: 0 0 0 auto;
+  text-align: right;
+}
 
 
 /* dropdown */
