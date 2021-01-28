@@ -137,30 +137,27 @@ export default function CheckoutForm() {
 
                 <p>Who buys</p>
                 <fieldset>
-                    <label htmlFor="firstName">First Name*</label>
                     <input
                         name="firstName"
-                        placeholder="First Name"
+                        placeholder="Name*"
                         ref={register({ required: "First name is required"})}
                     />
                     <ErrorMessage errors={errors} name="firstName" as="p" />
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="lastName">Last Name*</label>
                     <input
                         name="lastName"
-                        placeholder="Last Name"
+                        placeholder="Last Name*"
                         ref={register({ required: "Last name is required" })}
                     />
                     <ErrorMessage errors={errors} name="lastName" as="p" />
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="email">E-mail*</label>
                     <input
                         name="email"
-                        placeholder="E-mail"
+                        placeholder="E-mail*"
                         ref={register({
                             required: "E-mail is required",
                             pattern: {
@@ -173,7 +170,6 @@ export default function CheckoutForm() {
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="phone">Phone</label>
                     <input
                         name="phone"
                         placeholder="Phone"
@@ -182,7 +178,6 @@ export default function CheckoutForm() {
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="line2">Address</label>
                     <input
                         name="line2"
                         placeholder="Address"
@@ -191,7 +186,6 @@ export default function CheckoutForm() {
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="city">City</label>
                     <input
                         name="city"
                         placeholder="City"
@@ -200,7 +194,6 @@ export default function CheckoutForm() {
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="postalCode">Postal Code</label>
                     <input
                         name="postalCode"
                         placeholder="Postal Code"
@@ -209,8 +202,8 @@ export default function CheckoutForm() {
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="country">Country</label>
                     <select
+                        className="dropdown"
                         name="country"
                         placeholder="Country"
                         ref={register}
@@ -219,8 +212,8 @@ export default function CheckoutForm() {
                             return (
                                 <option
                                     value={v.value}
-                                    disabled={v.value ? false : true}
                                     selected={v.value ? false : true}
+                                    disabled={v.value ? false : true}
                                 >
                                     {v.label}
                                 </option>
@@ -232,7 +225,6 @@ export default function CheckoutForm() {
                 <p>For whom</p>
 
                 <fieldset>
-                    <label htmlFor="company">Name/Company name</label>
                     <input
                         name="company"
                         placeholder="Name/Company name"
