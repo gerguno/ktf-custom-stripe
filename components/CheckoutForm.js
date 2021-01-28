@@ -9,7 +9,7 @@ import {UserContext} from "../contexts/UserContext"
 import Dropdown from 'react-dropdown'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
-import options from '../countries'
+import countries from '../countries'
 
 export default function CheckoutForm() {
     const [succeeded, setSucceeded] = useState(false)
@@ -19,8 +19,6 @@ export default function CheckoutForm() {
     const stripe = useStripe()
     const elements = useElements()
 
-    const [country, setCountry] = useState('')
-
     const { user, storeUser, resetUser } = useContext(UserContext)
     const { register, errors, handleSubmit } = useForm()
 
@@ -28,8 +26,6 @@ export default function CheckoutForm() {
 
     const cardStyle = {
         hidePostalCode: true,
-        showIcon: true,
-        // hideIcon: true,
         style: {
             base: {
                 color: "#000",
@@ -62,7 +58,7 @@ export default function CheckoutForm() {
                 phone: data.phone ? data.phone : '',
                 address: {
                     city: data.city ? data.city : '',
-                    country: country ? country : '',
+                    country: data.country ? data.country : '',
                     line2: data.line2 ? data.line2 : '',
                     postal_code: data.postalCode ? data.postalCode : ''
                 }
@@ -72,7 +68,7 @@ export default function CheckoutForm() {
         // Set or unset billing_details params
         let address = {}
         data.city ? address['city'] = data.city : ''
-        country ? address['country'] = country : ''
+        data.country ? address['country'] = data.country : ''
         data.line2 ? address['line2'] = data.line2 : ''
         data.postalCode ? address['postal_code'] = data.postalCode : ''
 
@@ -214,14 +210,23 @@ export default function CheckoutForm() {
 
                 <fieldset>
                     <label htmlFor="country">Country</label>
-                    <Dropdown
-                        options={options}
-                        onChange={selected => {
-                            setCountry(selected.value)
-                        }}
-                        value={country}
-                        placeholder="Select an option"
-                    />
+                    <select
+                        name="country"
+                        placeholder="Country"
+                        ref={register}
+                    >
+                        {countries.map(v => {
+                            return (
+                                <option
+                                    value={v.value}
+                                    disabled={v.value ? false : true}
+                                    selected={v.value ? false : true}
+                                >
+                                    {v.label}
+                                </option>
+                            )
+                        })}
+                    </select>
                 </fieldset>
 
                 <p>For whom</p>
