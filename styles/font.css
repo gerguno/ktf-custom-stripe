@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Forma';
+    src: url('/fonts/Forma.eot');
+    src: url('/fonts/Forma.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Forma.woff2') format('woff2'),
+         url('/fonts/Forma.woff') format('woff'),
+         url('/fonts/Forma.ttf') format('truetype'),
+         url('/fonts/Forma.svg#Forma') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

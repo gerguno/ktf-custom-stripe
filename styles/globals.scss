@@ -1,3 +1,5 @@
+@import url(font.css);
+
 $wrapper-width: 80vw;
 $nav-margin-left: 20px;
 
@@ -418,7 +420,7 @@ button:disabled {
   input[type='checkbox']:after{
     line-height: 1.5em;
     content: '';
-    cursor: pointer;
+    cursor: pointer !important;
     display: inline-block;
     margin-top: -6px;
     margin-left: -6px;
@@ -585,11 +587,13 @@ button:disabled {
   }
 
   .name-lastname, .city-postalcode {
-    display: inline-grid;
-    grid-template-columns: calc((100% - 10px)/2) calc((100% - 10px)/2);
     width: 100%;
-    grid-column-gap: 10px;
-    margin-bottom: -4px;
+    display: flex;
+    gap: 10px;
+
+    & fieldset {
+      width: 100%;
+    }
   }
 
   input {
@@ -610,6 +614,10 @@ button:disabled {
     &:focus {
       outline: 0;
       background: #EFEFEF;
+    }
+
+    &::placeholder{
+      color: #727272;
     }
 
     &[name="company"] {

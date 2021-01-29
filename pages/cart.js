@@ -107,7 +107,7 @@ export default function Cart() {
                         </Elements>
                     </div>
                 :
-                    <div className="wrapper empty">
+                    <div className="wrapper">
                         <p>
                             {`The cart is now empty. `}
                             <Link href={'/'}>
