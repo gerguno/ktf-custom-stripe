@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import GetFile from "../components/GetFile";
@@ -6,6 +6,7 @@ import GetAllFiles from "../components/GetAllFiles";
 import GetPdf from "../components/GetPdf";
 import {UserContext} from "../contexts/UserContext";
 import createAndSendAllFiles from "../components/createAndSendAllFiles";
+import {MainLayout} from "../components/MainLayout";
 
 export default function Success() {
     const router = useRouter()
@@ -35,6 +36,7 @@ export default function Success() {
                     postal_code: ''
                 }
             },
+            company: '',
             products: [
                 {
                     name: '',
@@ -109,6 +111,7 @@ export default function Success() {
                             postal_code: data.pi.charges.data[0].billing_details.address.postal_code
                         }
                     },
+                    company: data.pi.metadata['company'],
                     products: products
                 })
 
@@ -136,6 +139,7 @@ export default function Success() {
                                 postal_code: data.pi.charges.data[0].billing_details.address.postal_code
                             }
                         },
+                        company: data.pi.metadata['company'],
                         products: products
                 }, (message) => {
                     setMailMessage(message)
@@ -148,30 +152,91 @@ export default function Success() {
     },[])
 
     return (
-        <>
-            <h1>Success</h1>
+        <MainLayout title={'Cart • Kyiv Type Foundry'}>
+            <div className="slug-nav">
+                <div>
+                    <span style={{color: "#003EDD"}}>H</span>
+                    <span style={{color: "black"}}>o</span>
+                    <span style={{color: "red"}}>r</span>
+                    <span style={{color: "#1AC235"}}>r</span>
+                    <span style={{color: "#F29100"}}>a</span>
+                    <span style={{color: "#696969"}}>y</span>
+                    <span style={{color: "black"}}>, </span>
+                    <span style={{color: "#1AC235"}}>t</span>
+                    <span style={{color: "#003EDD"}}>h</span>
+                    <span style={{color: "black"}}>e</span>
+                    <span style={{color: "red"}}>y'</span>
+                    <span style={{color: "#F29100"}}>r</span>
+                    <span style={{color: "#696969"}}>e </span>
+                    <span style={{color: "#1AC235"}}>y</span>
+                    <span style={{color: "#003EDD"}}>o</span>
+                    <span style={{color: "#696969"}}>u</span>
+                    <span style={{color: "black"}}>r</span>
+                    <span style={{color: "red"}}>s</span>
+                    <span style={{color: "black"}}>!</span>
+                </div>
+            </div>
 
-            <p>order: {JSON.stringify(order)}</p>
-
-            <ol>
-                {order.products.map(p => {
-                    return (
-                        <li>
-                            {p.name} {p.license} {p.filename} <GetFile name={p.filename}/>
-                        </li>
-                    )
-                })}
-            </ol>
-
-            <GetPdf order={order}/>
-            <br/> <br/>
-
-            <GetAllFiles order={order}/>
-            <br/> <br/>
-
-            <p>{mailMessage}</p>
-
-            <Link href={'/'}><a>Go Home</a></Link>
-        </>
+            <div className="wrapper with-right-border">
+                <div className="success">
+                    <div className="success-info">
+                        <div>
+                            <p>
+                                invoice-Nr.: {order.orderID} <br/>
+                                <GetPdf order={order}/>
+                            </p>
+                            <p>
+                                total: {order.charges.total} Eur <br/>
+                                card: {order.charges.card.brand} ...{order.charges.card.last4}
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                customer name: {order.customer.name} <br/>
+                                email: {order.customer.email} <br/>
+                                {order.customer.phone && (<>phone: {order.customer.phone}<br/></>)}
+                                {order.customer.address.line2 && (<>address: {order.customer.address.line2} </>)}
+                                {order.customer.address.postal_code && (<>{order.customer.address.postal_code} </>)}
+                                {order.customer.address.city && (<>{order.customer.address.city}, </>)}
+                                {order.customer.address.country && (<>{order.customer.address.country}</>)}
+                            </p>
+                            <p>
+                                license owner: {order.company}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="success-files">
+                        {order.products.map(p => {
+                            return (
+                                <div className="success-file">
+                                    <div>
+                                        {p.name}
+                                    </div>
+                                    <div>
+                                        <div>
+                                            {p.license}
+                                        </div>
+                                        <div>
+                                            <GetFile name={p.filename}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="success-download">
+                        <div className="mailmessage">
+                            {mailMessage}
+                        </div>
+                        <div>
+                            <GetAllFiles order={order}/>
+                        </div>
+                    </div>
+                    <div className="success-postman">
+                        <img src="/postman.png"/>
+                    </div>
+                </div>
+            </div>
+        </MainLayout>
     )
 }

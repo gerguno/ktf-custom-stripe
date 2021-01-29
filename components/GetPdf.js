@@ -27,7 +27,7 @@ export default function GetPdf({order}) {
 
     return (
         <>
-            <a href="#" onClick={downloadFile}>Download PDF License</a>
+            <a href="#" onClick={downloadFile}>download</a>
         </>
     )
 }

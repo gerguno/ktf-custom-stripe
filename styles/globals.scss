@@ -158,6 +158,7 @@ nav.menu-opened {
   width: $wrapper-width;
   margin: 0 auto;
   padding-bottom: 200px;
+  position: relative;
 }
 
 .with-right-border {
@@ -658,15 +659,6 @@ button:disabled {
   align-items: center;
 }
 
-/*form {*/
-/*  width: 50vw;*/
-/*  align-self: center;*/
-/*  box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),*/
-/*  0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);*/
-/*  border-radius: 7px;*/
-/*  padding: 40px;*/
-/*}*/
-
 input[type=checkbox], input[type=radio] {
   vertical-align: middle;
   position: relative;
@@ -771,5 +763,73 @@ input[type=radio] {
 @media only screen and (max-width: 600px) {
   form {
     width: 80vw;
+  }
+}
+
+// Success
+.success {
+  margin: 50px 40px 0 0;
+}
+
+.success-info {
+  display: flex;
+  padding: 0 0 40px 0;
+  border-bottom: 2px solid black;
+
+  & > div {
+    width: 50%;
+  }
+
+  & p {
+    margin-top: 0;
+  }
+}
+
+.success-files {
+  padding: 40px 0 40px 0;
+  border-bottom: 2px solid black;
+}
+
+.success-file {
+  display: flex;
+  margin-bottom: 4px;
+
+  & > div {
+    width: 50%;
+    display: flex;
+  }
+
+  & > div > div:last-child {
+    margin: 0 0 0 auto;
+  }
+}
+
+.success-download {
+  display: flex;
+  margin: 40px 0;
+
+  & > div {
+    width: 50%;
+    display: flex;
+  }
+
+  & .mailmessage {
+    color: #696969;
+  }
+
+  & > div:last-child button {
+    margin: -3px 0 0 auto;
+  }
+}
+
+.success-postman {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+
+  & img {
+    width: 73px;
+    height: 116px;
   }
 }

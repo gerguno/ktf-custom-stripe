@@ -43,7 +43,7 @@ export default function GetAllFiles({order}) {
 
     return (
         <>
-            <a href="#" onClick={downloadFile}>Download All</a>
+            <button href="#" onClick={downloadFile} className="darkgrey">Download all files!</button>
         </>
     )
 }

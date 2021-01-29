@@ -23,7 +23,7 @@ export default function GetFile({name}) {
 
     return (
         <>
-            <a href="#" onClick={downloadFile}>Download</a>
+            <a href="#" onClick={downloadFile}>download</a>
         </>
     )
 }
