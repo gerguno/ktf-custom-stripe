@@ -173,6 +173,10 @@ nav.menu-opened {
   color: black !important;
 }
 
+.empty {
+  margin-top: 50px;
+}
+
 // Footer
 .footer {
   width: calc(100vw - (100vw - 100%));
@@ -305,10 +309,14 @@ button:disabled {
 
 .slug-nav > div:first-child {
   margin: 1px 12px 0 0;
+}
+
+.close a {
+  opacity: 1;
   transition: 0.25s;
 }
 
-.slug-nav > div:first-child:hover {
+.close a:hover {
   opacity: 0.5;
 }
 
@@ -495,7 +503,7 @@ button:disabled {
 
 // Cart
 .cart-items {
-  padding: 50px 0;
+  padding: 50px 0 40px 0;
   border-bottom: 2px solid black;
 }
 
@@ -551,8 +559,41 @@ button:disabled {
 
 // Checkout Form
 #payment-form {
+  width: 60%;
+  padding-top: 20px;
+
+  // who buys
+  & p {
+    font-size: 12px;
+    line-height: 25px;
+    text-transform: lowercase;
+    margin: 20px 0 5px 0;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    // errors
+    & p {
+      font-size: 12px;
+      color: red;
+      margin: -8px 0 12px 0;
+      text-transform: unset;
+    }
+  }
+
+  .name-lastname, .city-postalcode {
+    display: inline-grid;
+    grid-template-columns: calc((100% - 10px)/2) calc((100% - 10px)/2);
+    width: 100%;
+    grid-column-gap: 10px;
+    margin-bottom: -4px;
+  }
+
   input {
-    width: 298px;
+    width: 100%;
     height: 40px;
     background: #F5F5F5;
     box-shadow: inset 3px 3px 1px rgba(0, 0, 0, 0.05);
@@ -563,16 +604,22 @@ button:disabled {
     letter-spacing: 0.2px;
     line-height: 41px;
     padding-left: 14px;
+    margin-bottom: 10px;
     transition: 0.25s;
 
     &:focus {
       outline: 0;
       background: #EFEFEF;
     }
+
+    &[name="company"] {
+      margin-bottom: 0;
+    }
   }
 
   .dropdown {
-    width: 298px !important;
+    color: #727272;
+    width: 100% !important;
     height: 40px !important;
     background: #F5F5F5;
     background-image: url('/dropdown_arrow.svg');
@@ -593,54 +640,10 @@ button:disabled {
   }
 }
 
-.dropdown option:disabled {
-  color: red !important;
-}
-
-//.dropdown {
-//  display: block;
-//  font-family: 'Forma', -apple-system, BlinkMacSystemFont, sans-serif;
-//  line-height: 22px;
-//  letter-spacing: 0.2px;
-//  font-size: 17px;
-//  text-rendering: optimizeLegibility !important;
-//  -webkit-font-smoothing: antialiased !important;
-//
-//  margin: 0;
-//  border: 0;
-//  cursor: pointer;
-//
-//  width: 214px;
-//  height: 30px;
-//  padding: 0 0 0 20px;
-//
-//  background: #ECECEC;
-//  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
-//  border-radius: 4px;
-//  -moz-appearance: none;
-//  -webkit-appearance: none;
-//  appearance: none;
-//
-//  background-image: url('/dropdown_arrow.svg');
-//  background-repeat: no-repeat, repeat;
-//  background-position: right 20px top 50%, 0 0;
-//  transition: 0.25s;
-//}
-//
-//.dropdown:hover {
-//  filter: contrast(105%);
-//}
-//
-//.dropdown:focus {
-//  border: none;
-//  outline: none;
-//}
 
 
 
-
-
-/* stripe */
+// Stripe
 
 #root {
   display: flex;
@@ -665,7 +668,6 @@ input[type=radio] {
   bottom: 2px;
 }
 
-
 .result-message {
   line-height: 22px;
   font-size: 16px;
@@ -678,6 +680,7 @@ input[type=radio] {
 .hidden {
   display: none;
 }
+
 #card-error {
   color: rgb(105, 115, 134);
   font-size: 16px;
@@ -685,15 +688,22 @@ input[type=radio] {
   margin-top: 12px;
   text-align: center;
 }
+
 #card-element {
-  border-radius: 4px 4px 0 0;
-  padding: 12px;
-  border: 1px solid rgba(50, 50, 93, 0.1);
-  max-height: 44px;
   width: 100%;
-  background: white;
-  box-sizing: border-box;
+  height: 40px;
+  background: #F5F5F5;
+  box-shadow: inset 3px 3px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  border: 0;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  padding: 11px 12px;
+  margin-bottom: 25px;
+  transition: 0.25s;
 }
+
 #payment-request-button {
   margin-bottom: 32px;
 }
@@ -703,7 +713,9 @@ input[type=radio] {
 .spinner:before,
 .spinner:after {
   border-radius: 50%;
+  background: white;
 }
+
 .spinner {
   color: #ffffff;
   font-size: 22px;
@@ -717,11 +729,13 @@ input[type=radio] {
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
+
 .spinner:before,
 .spinner:after {
   position: absolute;
   content: "";
 }
+
 .spinner:before {
   width: 10.4px;
   height: 20.4px;
@@ -734,18 +748,7 @@ input[type=radio] {
   -webkit-animation: loading 2s infinite ease 1.5s;
   animation: loading 2s infinite ease 1.5s;
 }
-.spinner:after {
-  width: 10.4px;
-  height: 10.2px;
-  background: #000;
-  border-radius: 0 10.2px 10.2px 0;
-  top: -0.1px;
-  left: 10.2px;
-  -webkit-transform-origin: 0px 10.2px;
-  transform-origin: 0px 10.2px;
-  -webkit-animation: loading 2s infinite ease;
-  animation: loading 2s infinite ease;
-}
+
 @keyframes loading {
   0% {
     -webkit-transform: rotate(0deg);
@@ -756,6 +759,7 @@ input[type=radio] {
     transform: rotate(360deg);
   }
 }
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80vw;

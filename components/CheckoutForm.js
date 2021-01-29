@@ -29,9 +29,9 @@ export default function CheckoutForm() {
         style: {
             base: {
                 color: "#000",
-                fontFamily: 'Arial, sans-serif',
+                fontFamily: 'Forma, sans-serif',
                 fontSmoothing: "antialiased",
-                fontSize: "16px",
+                fontSize: "14px",
                 "::placeholder": {
                     color: "#000"
                 }
@@ -45,6 +45,10 @@ export default function CheckoutForm() {
     const handleChange = async (event) => {
         setDisabled(event.empty);
         setError(event.error ? event.error.message : "")
+    }
+
+    const changeColor = () => {
+        document.querySelector('select[name="country"]').style.color = "#000000"
     }
 
     const onSubmit = async (data) => {
@@ -136,22 +140,24 @@ export default function CheckoutForm() {
             <form id="payment-form" onSubmit={handleSubmit(onSubmit)}>
 
                 <p>Who buys</p>
-                <fieldset>
-                    <input
-                        name="firstName"
-                        placeholder="Name*"
-                        ref={register({ required: "First name is required"})}
-                    />
-                    <ErrorMessage errors={errors} name="firstName" as="p" />
-                </fieldset>
+                <fieldset className="name-lastname">
+                    <fieldset>
+                        <input
+                            name="firstName"
+                            placeholder="Name*"
+                            ref={register({ required: "First name is required"})}
+                        />
+                        <ErrorMessage errors={errors} name="firstName" as="p" />
+                    </fieldset>
 
-                <fieldset>
-                    <input
-                        name="lastName"
-                        placeholder="Last Name*"
-                        ref={register({ required: "Last name is required" })}
-                    />
-                    <ErrorMessage errors={errors} name="lastName" as="p" />
+                    <fieldset>
+                        <input
+                            name="lastName"
+                            placeholder="Last Name*"
+                            ref={register({ required: "Last name is required" })}
+                        />
+                        <ErrorMessage errors={errors} name="lastName" as="p" />
+                    </fieldset>
                 </fieldset>
 
                 <fieldset>
@@ -185,20 +191,22 @@ export default function CheckoutForm() {
                     />
                 </fieldset>
 
-                <fieldset>
-                    <input
-                        name="city"
-                        placeholder="City"
-                        ref={register}
-                    />
-                </fieldset>
+                <fieldset className="city-postalcode">
+                    <fieldset>
+                        <input
+                            name="city"
+                            placeholder="City"
+                            ref={register}
+                        />
+                    </fieldset>
 
-                <fieldset>
-                    <input
-                        name="postalCode"
-                        placeholder="Postal Code"
-                        ref={register}
-                    />
+                    <fieldset>
+                        <input
+                            name="postalCode"
+                            placeholder="Postal Code"
+                            ref={register}
+                        />
+                    </fieldset>
                 </fieldset>
 
                 <fieldset>
@@ -206,6 +214,7 @@ export default function CheckoutForm() {
                         className="dropdown"
                         name="country"
                         placeholder="Country"
+                        onChange={changeColor}
                         ref={register}
                     >
                         {countries.map(v => {
@@ -220,6 +229,7 @@ export default function CheckoutForm() {
                             )
                         })}
                     </select>
+                    <ErrorMessage errors={errors} name="country" as="p" />
                 </fieldset>
 
                 <p>For whom</p>
@@ -232,10 +242,13 @@ export default function CheckoutForm() {
                     />
                 </fieldset>
 
+                <p>Purchase</p>
+
                 <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
                 <button
                     disabled={processing || disabled || succeeded}
                     id="submit"
+                    className="darkgrey"
                 >
                     <span id="button-text">
                       {processing ? (
@@ -245,21 +258,16 @@ export default function CheckoutForm() {
                       )}
                     </span>
                 </button>
-                {/* Show any error that happens when processing the payment */}
+
                 {error && (
                     <div className="card-error" role="alert">
                         {error}
                     </div>
                 )}
-                {/* Show a success message upon completion */}
+
+
                 <p className={succeeded ? "result-message" : "result-message hidden"}>
-                    Payment succeeded, see the result in your
-                    <a
-                        href={`https://dashboard.stripe.com/test/payments`}
-                    >
-                        {" "}
-                        Stripe dashboard.
-                    </a> Refresh the page to pay again.
+                    Hooray! Payment succeeded!
                 </p>
             </form>
         </>

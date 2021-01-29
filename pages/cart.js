@@ -94,7 +94,7 @@ export default function Cart() {
                             </div>
                             <div className="cart-total-field">
                                 <div>
-                                    Total
+                                    TOTAL
                                 </div>
                                 <div>
                                     {user.total} Eur

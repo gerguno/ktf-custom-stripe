@@ -14,7 +14,7 @@ export default function Index({typeface}) {
     return (
         <MainLayout title={`${typeface.releaseTitle} • Kyiv Type Foundry`}>
             <div className="slug-nav">
-                <div>
+                <div className="close">
                     <Link href={`/`}>
                         <a>
                             <img src="/close.svg" alt=""/>

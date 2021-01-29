@@ -13,7 +13,7 @@ export default function Buy({typeface}) {
     return (
         <MainLayout title={`${typeface.releaseTitle} Checkout • Kyiv Type Foundry`}>
             <div className="slug-nav">
-                <div>
+                <div className="close">
                     <Link href={`/`}>
                         <a>
                             <img src="/close.svg" alt=""/>
