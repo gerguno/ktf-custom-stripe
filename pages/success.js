@@ -47,6 +47,7 @@ export default function Success() {
             ]
     })
 
+    const [loading, setLoading] = useState(true)
     const [mailMessage, setMailMessage] = useState('')
 
     useEffect(() => {
@@ -146,6 +147,7 @@ export default function Success() {
                 })
 
                 resetUser()
+                setLoading(false)
 
             })
         }
@@ -154,27 +156,36 @@ export default function Success() {
     return (
         <MainLayout title={'Cart • Kyiv Type Foundry'}>
             <div className="slug-nav">
-                <div>
-                    <span style={{color: "#003EDD"}}>H</span>
-                    <span style={{color: "black"}}>o</span>
-                    <span style={{color: "red"}}>r</span>
-                    <span style={{color: "#1AC235"}}>r</span>
-                    <span style={{color: "#F29100"}}>a</span>
-                    <span style={{color: "#696969"}}>y</span>
-                    <span style={{color: "black"}}>, </span>
-                    <span style={{color: "#1AC235"}}>t</span>
-                    <span style={{color: "#003EDD"}}>h</span>
-                    <span style={{color: "black"}}>e</span>
-                    <span style={{color: "red"}}>y'</span>
-                    <span style={{color: "#F29100"}}>r</span>
-                    <span style={{color: "#696969"}}>e </span>
-                    <span style={{color: "#1AC235"}}>y</span>
-                    <span style={{color: "#003EDD"}}>o</span>
-                    <span style={{color: "#696969"}}>u</span>
-                    <span style={{color: "black"}}>r</span>
-                    <span style={{color: "red"}}>s</span>
-                    <span style={{color: "black"}}>!</span>
-                </div>
+                {loading
+                    ?
+                        (
+                            <div>Loading...</div>
+                        )
+                    :
+                        (
+                            <div>
+                                <span style={{color: "#003EDD"}}>H</span>
+                                <span style={{color: "black"}}>o</span>
+                                <span style={{color: "red"}}>r</span>
+                                <span style={{color: "#1AC235"}}>r</span>
+                                <span style={{color: "#F29100"}}>a</span>
+                                <span style={{color: "#696969"}}>y</span>
+                                <span style={{color: "black"}}>, </span>
+                                <span style={{color: "#1AC235"}}>t</span>
+                                <span style={{color: "#003EDD"}}>h</span>
+                                <span style={{color: "black"}}>e</span>
+                                <span style={{color: "red"}}>y'</span>
+                                <span style={{color: "#F29100"}}>r</span>
+                                <span style={{color: "#696969"}}>e </span>
+                                <span style={{color: "#1AC235"}}>y</span>
+                                <span style={{color: "#003EDD"}}>o</span>
+                                <span style={{color: "#696969"}}>u</span>
+                                <span style={{color: "black"}}>r</span>
+                                <span style={{color: "red"}}>s</span>
+                                <span style={{color: "black"}}>!</span>
+                            </div>
+                        )
+                }
             </div>
 
             <div className="wrapper with-right-border">

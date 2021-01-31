@@ -248,7 +248,7 @@ export default function CheckoutForm() {
                 <button
                     disabled={processing || disabled || succeeded}
                     id="submit"
-                    className="darkgrey"
+                    className="pay"
                 >
                     <span id="button-text">
                       {processing ? (

@@ -29,11 +29,11 @@ export default function Index({typeface}) {
                 </Link>
             </div>
 
-            <div className='wrapper'>
-                <div className="slug-carousel">
-                    <FadeCarousel media={typeface.aboutMedia}/>
-                </div>
+            <div className="slug-carousel">
+                <FadeCarousel media={typeface.aboutMedia}/>
+            </div>
 
+            <div className='wrapper'>
                 <div className="slug-buttons">
                     <form action={typeface.specimen.url} target='_blank'>
                         <button className="darkgrey">PDF Specimen</button>

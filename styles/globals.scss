@@ -24,7 +24,6 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-  display: inline-block;
 }
 
 a:hover {
@@ -138,7 +137,7 @@ nav.menu-opened {
 }
 
 #menu-opts a:hover {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
 }
 
 #menu-opts div {
@@ -230,6 +229,57 @@ button:disabled {
   background: #BABABA;
 }
 
+.pay {
+    border: 0;
+    background: #BABABA;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 250px;
+    height: 26px;
+
+    &:hover {
+      animation: 8s move linear infinite;
+      background: linear-gradient(-60deg, rgba(255,0,0,1) 0%, rgba(255,0,166,1) 24%, rgba(44,59,180,1) 45%, rgba(97,203,16,1) 74%, rgba(255,0,0,1) 100%);
+      background-size: 800% 800%;
+      filter: contrast(130%);
+      padding: 1px;
+      box-shadow: 0px 0px 13px rgba(0,255,0,0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.17), inset 4px 4px 2px rgba(255, 255, 255, 0.12);
+      color: white;
+      cursor: pointer;
+      text-shadow: white 0 0 6px;
+    }
+
+  &:disabled:hover {
+    border: 0;
+    background: #BABABA;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 250px;
+    height: 26px;
+    filter: contrast(100%) !important;
+    color: rgba(0,0,0,0.5);
+    text-shadow: white 0 0 0 !important;
+  }
+}
+
+@keyframes move {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 .pink {
   background: #FF6BF0;
   color: #FF0000;
@@ -304,6 +354,8 @@ button:disabled {
 .slug-nav {
   padding: 7px 20px;
   display: flex;
+  position:relative;
+  z-index: 1;
 }
 
 .violet {
@@ -333,20 +385,30 @@ button:disabled {
 // Carousel
 .slug-carousel {
   display: block;
-  margin: 66px 0 18px 0;
-  width: $wrapper-width;
-  height: $wrapper-width * 0.707;
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 80vh;
+  margin-top: -37px;
+  background: white;
+  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.25));
+  z-index: -9999;
 }
 
-.card-container img {
-  position: absolute;
-  width: $wrapper-width;
+.card-container {
+  & img {
+    position: absolute;
+    height: 80vh;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
+  }
 }
 
 .slug-buttons {
   width: 100%;
   display: flex;
+  margin-top: 25px;
 }
 
 .slug-buttons form:last-child {
@@ -832,4 +894,12 @@ input[type=radio] {
     width: 73px;
     height: 116px;
   }
+}
+
+.pdf {
+  flex: 1 1 0%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
 }
