@@ -1,8 +1,11 @@
 export default function GetAllFiles({order}) {
 
     const downloadFile = () => {
-        const name = 'KTF ' + order.products[0].name.split(' ')[0] + ` (for ${order.customer.email})` + '.zip'
-        const pdfName = 'KTF ' + order.products[0].name.split(' ')[0] + ` License (for ${order.customer.email})` + '.pdf'
+        // const name = 'KTF ' + order.products[0].name.split(' ')[0] + ` (for ${order.customer.email})` + '.zip'
+        // const pdfName = 'KTF ' + order.products[0].name.split(' ')[0] + ` License (for ${order.customer.email})` + '.pdf'
+
+        const name = `KTF Fonts (for ${order.customer.email})` + '.zip'
+        const pdfName = `Invoice-Nr. ${order.orderID} (for ${order.customer.email})` + '.pdf'
 
         fetch('/api/pdfServer', {
             method: "POST",

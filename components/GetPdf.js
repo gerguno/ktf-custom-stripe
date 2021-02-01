@@ -1,7 +1,7 @@
 export default function GetPdf({order}) {
 
     const downloadFile = () => {
-        const name = 'KTF ' + order.products[0].name.split(' ')[0] + ` License (for ${order.customer.email})` + '.pdf'
+        const name = `Invoice-Nr. ${order.orderID} (for ${order.customer.email})` + '.pdf'
 
         fetch('/api/pdfServer', {
             method: "POST",

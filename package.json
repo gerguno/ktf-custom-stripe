@@ -19,6 +19,7 @@
     "graphql-request": "^3.3.0",
     "mime-types": "^2.1.27",
     "next": "10.0.3",
+    "next-fonts": "^1.5.1",
     "node-localstorage": "^2.1.6",
     "nodemailer": "^6.4.17",
     "react": "17.0.1",
