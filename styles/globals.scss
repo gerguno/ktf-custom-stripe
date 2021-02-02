@@ -341,7 +341,7 @@ button:disabled {
   position: relative;
 
   @include xs {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 60px);
   }
 
   @include l {
