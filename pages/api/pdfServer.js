@@ -8,7 +8,7 @@ export default function pdfServer(req, res) {
     const { pdfName, order, purpose } = req.body
     const pdfPath = `././files/_users_files/${pdfName}`
 
-    ReactPDF.render(<InvoiceTemplate email="robe@robe.robe"/>, pdfPath, () => {
+    ReactPDF.render(<InvoiceTemplate order={order}/>, pdfPath, () => {
         if (purpose === 'notEmail') {
             const mimetype = mime.lookup(pdfPath)
             res.setHeader('Content-disposition', 'attachment; filename=' + pdfPath)

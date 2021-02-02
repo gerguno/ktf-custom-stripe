@@ -206,14 +206,23 @@ export default function Success() {
                                 customer name: {order.customer.name} <br/>
                                 email: {order.customer.email} <br/>
                                 {order.customer.phone && (<>phone: {order.customer.phone}<br/></>)}
-                                {order.customer.address.line2 && (<>address: {order.customer.address.line2} </>)}
-                                {order.customer.address.postal_code && (<>{order.customer.address.postal_code} </>)}
-                                {order.customer.address.city && (<>{order.customer.address.city}, </>)}
-                                {order.customer.address.country && (<>{order.customer.address.country}</>)}
+
+                                {(
+                                    order.customer.address.line2 ||
+                                    order.customer.address.postal_code ||
+                                    order.customer.address.city ||
+                                    order.customer.address.country
+                                ) && (
+                                    <>
+                                        address: {order.customer.address.line2} {order.customer.address.postal_code} {order.customer.address.city && `${order.customer.address.city}, `} {order.customer.address.country}
+                                    </>
+                                )}
                             </p>
-                            <p>
-                                license owner: {order.company}
-                            </p>
+                            {order.company && (
+                                <p>
+                                    license owner: {order.company}
+                                </p>
+                            )}
                         </div>
                     </div>
                     <div className="success-files">

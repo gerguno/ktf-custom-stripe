@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { FullsizeMedium } from "../components/FullsizeMedium";
 import { request } from './api/getDataFromCMS';
-import {useEffect} from "react";
-import {MainLayout} from "../components/MainLayout"
+import { useEffect, useState } from "react";
+import { MainLayout } from "../components/MainLayout"
+import useWindowDimensions from "../components/useWindowDimensions"
+
 
 export default function Home({typefaces}) {
-    useEffect(()=>{
+    const { height, width } = useWindowDimensions();
+
+    useEffect(() => {
         document.body.style.backgroundColor = '#FFFFFF'
     },[])
 
@@ -17,7 +21,12 @@ export default function Home({typefaces}) {
                       <div className="home-media">
                           <Link href={`/[slug]`} as={`/${t.slug}`}>
                               <a>
-                                  <FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>
+                                  {width > 768
+                                      ?
+                                        (<FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>)
+                                      :
+                                        (<FullsizeMedium src={t.mediaMobile.url} ext={t.mediaMobile.mimeType}/>)
+                                  }
                               </a>
                           </Link>
                       </div>
@@ -42,6 +51,10 @@ export async function getStaticProps() {
       url
     }
     media {
+      url
+      mimeType
+    }
+    mediaMobile {
       url
       mimeType
     }

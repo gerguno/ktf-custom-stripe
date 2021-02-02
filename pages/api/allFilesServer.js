@@ -37,14 +37,23 @@ export default async function allFilesServer(req, res) {
     // pipe archive data to the file
     archive.pipe(output)
 
-    // Add Font .zip's
     zipFiles.map(zf => {
+        // Add Font .zip's to Font Folder
         archive.append(fs.createReadStream(`././files/${zf.filename.split('-')[0]}/${zf.filename}`),
-            { name: zf.filename })
+            { name: `${zf.filename.split('-')[0]}/${zf.filename}` })
+
+        // Add Specimen.pdf to Font Folder
+        archive.append(fs.createReadStream(`././files/${zf.filename.split('-')[0]}/Specimen/${zf.filename.split('-')[0]}-Specimen.pdf`),
+            { name: `${zf.filename.split('-')[0]}/${zf.filename.split('-')[0]}-Specimen.pdf` })
     })
 
+    // Add Invoice.pdf
     archive.append(fs.createReadStream(`././files/_users_files/${pdfName}`),
         { name: pdfName })
+
+    // Add Invoice.pdf
+    archive.append(fs.createReadStream(`././files/EULA/Kyiv Type Foundry EULA.pdf`),
+        { name: `Kyiv Type Foundry EULA.pdf` })
 
     archive.finalize();
 }

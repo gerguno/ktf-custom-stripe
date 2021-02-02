@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
 // Create Document Component
-export default function InvoiceTemplate ({ email }) {
+export default function InvoiceTemplate ({ order }) {
     Font.register({
         family: 'FormaNeretta',
         src: './public/fonts/Forma.ttf'
@@ -322,29 +322,53 @@ export default function InvoiceTemplate ({ email }) {
                         invoice date: {date()}
                     </Text>
                     <Text>
-                        invoice-Nr.:    675763423
+                        invoice-Nr.:    {order.orderID}
                     </Text>
                     <Text>
                         {' '}
                     </Text>
                     <Text>
-                        customer name: Oles Gergun
+                        customer name: {order.customer.name}
                     </Text>
                     <Text>
-                        email: {email}
+                        email: {order.customer.email}
                     </Text>
-                    <Text>
-                        phone: +49 162 795 98 69
-                    </Text>
-                    <Text>
-                        address: Naberezhno-Luhova 16 (apt. 4) 67856 Kyiv, UA
-                    </Text>
+                    {order.customer.phone && (
+                        <Text>
+                            phone: {order.customer.phone}
+                        </Text>
+                    )}
+                    {(  order.customer.address.line2 ||
+                        order.customer.address.postal_code ||
+                        order.customer.address.city ||
+                        order.customer.address.country
+                    ) && (
+                        <Text>
+                            <Text>
+                                {`address: `}
+                            </Text>
+                            <Text>
+                                {order.customer.address.line2 && `${order.customer.address.line2} `}
+                            </Text>
+                            <Text>
+                                {order.customer.address.postal_code && `${order.customer.address.postal_code} `}
+                            </Text>
+                            <Text>
+                                {order.customer.address.city && `${order.customer.address.city}, `}
+                            </Text>
+                            <Text>
+                                {order.customer.address.country}
+                            </Text>
+                        </Text>
+                    )}
                     <Text>
                         {' '}
                     </Text>
-                    <Text>
-                        license owner: Yurko Hutsulyak
-                    </Text>
+                    {order.company && (
+                        <Text>
+                            license owner: {order.company}
+                        </Text>
+                    )}
                 </View>
                 <View style={styles.productsHeader}>
                     <View style={styles.captionTypeface}>
@@ -369,96 +393,40 @@ export default function InvoiceTemplate ({ email }) {
                     </View>
                 </View>
                 <View style={styles.products}>
-                    <View style={styles.product}>
-                        <View style={styles.typeface}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Jermilov Solid
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.license}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Desktop
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.users}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Up to 25 users
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.price}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    60.00 Eur
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.product}>
-                        <View style={styles.typeface}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Jermilov Solid
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.license}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Desktop
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.users}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Up to 25 users
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.price}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    60.00 Eur
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.product}>
-                        <View style={styles.typeface}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Jermilov Solid
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.license}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Desktop
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.users}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    Up to 25 users
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.price}>
-                            <View style={styles.listItem}>
-                                <Text>
-                                    60.00 Eur
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
+                    {order.products.map(p => {
+                      return (
+                          <View style={styles.product}>
+                              <View style={styles.typeface}>
+                                  <View style={styles.listItem}>
+                                      <Text>
+                                          {p.name}
+                                      </Text>
+                                  </View>
+                              </View>
+                              <View style={styles.license}>
+                                  <View style={styles.listItem}>
+                                      <Text>
+                                          {p.license}
+                                      </Text>
+                                  </View>
+                              </View>
+                              <View style={styles.users}>
+                                  <View style={styles.listItem}>
+                                      <Text>
+                                          {p.users}
+                                      </Text>
+                                  </View>
+                              </View>
+                              <View style={styles.price}>
+                                  <View style={styles.listItem}>
+                                      <Text>
+                                          {p.price}
+                                      </Text>
+                                  </View>
+                              </View>
+                          </View>
+                      )
+                    })}
                 </View>
                 <View style={styles.summary}>
                     <View style={styles.summaryCaption}>
@@ -469,12 +437,12 @@ export default function InvoiceTemplate ({ email }) {
                     <View style={styles.summaryItem}>
                         <View style={styles.totals}>
                             <Text>
-                                VAT 14%*
+                                VAT{order.charges.tax}%*
                             </Text>
                         </View>
                         <View style={styles.amount}>
                             <Text>
-                                20.00 Eur
+                                {(order.charges.subtotal * (order.charges.tax / 100).toFixed(2)).toFixed(2)} Eur
                             </Text>
                         </View>
                     </View>
@@ -486,7 +454,7 @@ export default function InvoiceTemplate ({ email }) {
                         </View>
                         <View style={styles.amount}>
                             <Text>
-                                180.00 Eur
+                                {order.charges.subtotal} Eur
                             </Text>
                         </View>
                     </View>
@@ -498,7 +466,7 @@ export default function InvoiceTemplate ({ email }) {
                         </View>
                         <View style={styles.amount}>
                             <Text>
-                                200.00 Eur
+                                {order.charges.total} Eur
                             </Text>
                         </View>
                     </View>
