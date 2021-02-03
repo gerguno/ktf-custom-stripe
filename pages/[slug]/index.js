@@ -45,12 +45,12 @@ export default function Index({typeface}) {
                     </>)
                 :
                     (<div className="slug-carousel">
-                        <FadeCarouselMob media={typeface.aboutMediaMobile}/>
                         <div className="slug-buy">
                             <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
                                 <button className="pink">Buy</button>
                             </Link>
                         </div>
+                        <FadeCarouselMob media={typeface.aboutMediaMobile}/>
                     </div>)
             }
             <div className='wrapper'>
