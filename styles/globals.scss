@@ -271,27 +271,34 @@ button:disabled {
 }
 
 .pay {
-    border: 0;
-    background: #BABABA;
-    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
-    border-radius: 20px;
-    padding: 2px;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 250px;
-    height: 26px;
+  border: 0;
+  background: #BABABA;
+  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 26px;
 
-    &:hover {
-      animation: 8s move linear infinite;
-      background: linear-gradient(-60deg, rgba(255,0,0,1) 0%, rgba(255,0,166,1) 24%, rgba(44,59,180,1) 45%, rgba(97,203,16,1) 74%, rgba(255,0,0,1) 100%);
-      background-size: 800% 800%;
-      filter: contrast(130%);
-      padding: 1px;
-      box-shadow: 0px 0px 13px rgba(0,255,0,0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.17), inset 4px 4px 2px rgba(255, 255, 255, 0.12);
-      color: white;
-      cursor: pointer;
-      text-shadow: white 0 0 6px;
-    }
+  @include xs {
+    width: 100%;
+  }
+
+  @include l {
+    width: 250px;
+  }
+
+  &:hover {
+    animation: 8s move linear infinite;
+    background: linear-gradient(-60deg, rgba(255,0,0,1) 0%, rgba(255,0,166,1) 24%, rgba(44,59,180,1) 45%, rgba(97,203,16,1) 74%, rgba(255,0,0,1) 100%);
+    background-size: 800% 800%;
+    filter: contrast(130%);
+    padding: 1px;
+    box-shadow: 0px 0px 13px rgba(0,255,0,0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.17), inset 4px 4px 2px rgba(255, 255, 255, 0.12);
+    color: white;
+    cursor: pointer;
+    text-shadow: white 0 0 6px;
+  }
 
   &:disabled:hover {
     border: 0;
@@ -301,11 +308,18 @@ button:disabled {
     padding: 2px;
     cursor: pointer;
     transition: 0.3s;
-    width: 250px;
     height: 26px;
     filter: contrast(100%) !important;
     color: rgba(0,0,0,0.5);
     text-shadow: white 0 0 0 !important;
+
+    @include xs {
+      width: 100%;
+    }
+
+    @include l {
+      width: 250px;
+    }
   }
 }
 
@@ -475,12 +489,13 @@ button:disabled {
 .slug-carousel {
   display: block;
   background: white;
-  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.25));
+  position: relative;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
   z-index: -9999;
 
   @include xs {
     margin-top: 0;
-    height: calc(100vh - 35px);
+    height: calc(100vh - 88px)
   }
 
   @include m {
@@ -611,7 +626,7 @@ button:disabled {
 
 .total {
   @include xs {
-    margin: 0;
+    margin: -11px 0;
   }
 
   @include l {
@@ -626,7 +641,7 @@ button:disabled {
 .buy-container {
   @include xs {
     display: block;
-    margin: 50px 0;
+    margin: 58px 0;
   }
 
   @include m {
@@ -807,19 +822,40 @@ button:disabled {
 
 // Cart
 .cart-items {
-  padding: 50px 0 40px 0;
   border-bottom: 2px solid black;
+
+  @include xs {
+    padding: 70px 0 27px 0;
+  }
+
+  @include m {
+    padding: 50px 0 40px 0;
+  }
 }
 
 .cart-item {
   display: flex;
-  padding-bottom: 3px;
+
+  @include xs {
+    padding-bottom: 20px;
+  }
+
+  @include m {
+    padding-bottom: 3px;
+  }
 }
 
 .cart-item-left {
-  display: inline-grid;
-  grid-template-columns: 240px 150px 150px;
+  @include xs {
+    display: block;
+  }
+
+  @include l {
+    display: inline-grid;
+    grid-template-columns: 240px 150px 150px;
+  }
 }
+
 
 .cart-item-right {
   display: flex;
@@ -863,8 +899,15 @@ button:disabled {
 
 // Checkout Form
 #payment-form {
-  width: 60%;
   padding-top: 20px;
+
+  @include xs {
+    width: 100%;
+  }
+
+  @include l {
+    width: 60%;
+  }
 
   // who buys
   & p {
@@ -890,11 +933,18 @@ button:disabled {
 
   .name-lastname, .city-postalcode {
     width: 100%;
-    display: flex;
-    gap: 10px;
 
     & fieldset {
       width: 100%;
+    }
+
+    @include xs {
+      width: 100%;
+    }
+
+    @include m {
+      display: flex;
+      gap: 10px;
     }
   }
 
@@ -1064,16 +1114,35 @@ input[type=radio] {
 
 // Success
 .success {
-  margin: 50px 40px 0 0;
+  @include xs {
+    margin: 70px 0 0 0;
+  }
+
+  @include m {
+    margin: 50px 40px 0 0;
+  }
 }
 
 .success-info {
-  display: flex;
   padding: 0 0 40px 0;
   border-bottom: 2px solid black;
 
+  @include xs {
+    display: block;
+  }
+
+  @include m {
+    display: flex;
+  }
+
   & > div {
-    width: 50%;
+    @include xs {
+      width: 100%;
+    }
+
+    @include m {
+      width: 50%;
+    }
   }
 
   & p {
@@ -1088,7 +1157,16 @@ input[type=radio] {
 
 .success-file {
   display: flex;
-  margin-bottom: 4px;
+
+  @include xs {
+    margin-bottom: 14px;
+  }
+
+  @include m {
+    margin-bottom: 4px;
+  }
+
+
 
   & > div {
     width: 50%;
@@ -1101,12 +1179,26 @@ input[type=radio] {
 }
 
 .success-download {
-  display: flex;
   margin: 40px 0;
 
-  & > div {
-    width: 50%;
+  @include xs {
+    display: block;
+  }
+
+  @include m {
     display: flex;
+  }
+
+  & > div {
+    @include xs {
+      width: 100%;
+      display: block;
+    }
+
+    @include m {
+      width: 50%;
+      display: flex;
+    }
   }
 
   & .mailmessage {
@@ -1114,7 +1206,13 @@ input[type=radio] {
   }
 
   & > div:last-child button {
-    margin: -3px 0 0 auto;
+    @include xs {
+      margin: 40px 0 50px auto;
+    }
+
+    @include m {
+      margin: -3px 0 0 auto;;
+    }
   }
 }
 
@@ -1123,6 +1221,7 @@ input[type=radio] {
   text-align: center;
   position: absolute;
   bottom: 0;
+  left: 0;
 
   & img {
     width: 73px;

@@ -7,9 +7,12 @@ import GetPdf from "../components/GetPdf";
 import {UserContext} from "../contexts/UserContext";
 import createAndSendAllFiles from "../components/createAndSendAllFiles";
 import {MainLayout} from "../components/MainLayout";
+import useWindowDimensions from "../components/useWindowDimensions";
 
 export default function Success() {
     const router = useRouter()
+
+    const { height, width } = useWindowDimensions();
 
     const {user, storeUser, resetUser} = useContext(UserContext)
 
@@ -226,23 +229,39 @@ export default function Success() {
                         </div>
                     </div>
                     <div className="success-files">
-                        {order.products.map(p => {
-                            return (
-                                <div className="success-file">
-                                    <div>
-                                        {p.name}
-                                    </div>
-                                    <div>
-                                        <div>
-                                            {p.license}
+                        {width > 375
+                            ?
+                                order.products.map(p => {
+                                    return (
+                                        <div className="success-file">
+                                            <div>
+                                                {p.name}
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {p.license}
+                                                </div>
+                                                <div>
+                                                    <GetFile name={p.filename}/>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <GetFile name={p.filename}/>
+                                )})
+                            :
+                                order.products.map(p => {
+                                    return (
+                                        <div className="success-file">
+                                            <div>
+                                                {p.name}, <br/> {p.license}
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <GetFile name={p.filename}/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                                )})
+                      }
                     </div>
                     <div className="success-download">
                         <div className="mailmessage">

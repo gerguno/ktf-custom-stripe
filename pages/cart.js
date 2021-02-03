@@ -5,10 +5,13 @@ import {CardElement, Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from "../components/CheckoutForm"
 import {MainLayout} from "../components/MainLayout";
 import Link from "next/link";
+import useWindowDimensions from "../components/useWindowDimensions";
 
 const promise = loadStripe("pk_test_51Hv5XCLUcU5ulJ9ybKRoOJupbE3qVziQqJCO66oYMHnRXAMolGpv2aKFw6t3r7fct4wB33O3gfE63dubwE0kJDh500wXZVkgvF")
 
 export default function Cart() {
+    const { height, width } = useWindowDimensions();
+
     const {user, storeUser, resetUser} = useContext(UserContext)
     const [vat, setVat] = useState(0.14)
 
@@ -46,34 +49,62 @@ export default function Cart() {
     return (
         <MainLayout title={'Cart • Kyiv Type Foundry'}>
             <div className="slug-nav violet">
-                <div>You’re in a few steps away from having completed your order</div>
+                {width > 768
+                    ?
+                        (<div>You’re in a few steps away from having completed your order</div>)
+                    :
+                        (<div>Your cart is ready for order completion</div>)
+                }
+
             </div>
 
             {user.products.length > 0
                 ?
                     <div className="wrapper">
                         <div className="cart-items">
-                            {user.products.map((up, key) => {
-                                return (
-                                    <div className="cart-item">
-                                        <div className="cart-item-left">
-                                            <div>{up.name}</div>
-                                            <div>{up.license}</div>
-                                            <div>{up.users}</div>
-                                        </div>
-                                        <div className="cart-item-right">
-                                            <div>{up.price} Eur</div>
-                                            <div>
-                                                <a onClick={(e) => {
-                                                    removeProduct(e, key)
-                                                }}>
-                                                    <img src="/close.svg" alt=""/>
-                                                </a>
+                            {width > 768
+                                ?
+                                    user.products.map((up, key) => {
+                                        return (
+                                            <div className="cart-item">
+                                                <div className="cart-item-left">
+                                                    <div>{up.name}</div>
+                                                    <div>{up.license}</div>
+                                                    <div>{up.users}</div>
+                                                </div>
+                                                <div className="cart-item-right">
+                                                    <div>{up.price} Eur</div>
+                                                    <div>
+                                                        <a onClick={(e) => {
+                                                            removeProduct(e, key)
+                                                        }}>
+                                                            <img src="/close.svg" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                )
-                            })}
+                                    )})
+                                :
+                                    user.products.map((up, key) => {
+                                        return (
+                                            <div className="cart-item">
+                                                <div className="cart-item-left">
+                                                    {up.name}, {width < 768 && (<br/>)} {up.license}, {width < 768 && (<br/>)} {up.users}
+                                                </div>
+                                                <div className="cart-item-right">
+                                                    <div>{up.price} Eur</div>
+                                                    <div>
+                                                        <a onClick={(e) => {
+                                                            removeProduct(e, key)
+                                                        }}>
+                                                            <img src="/close.svg" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    )})
+                            }
+
                         </div>
                         <div className="cart-total">
                             <div className="cart-total-field">
