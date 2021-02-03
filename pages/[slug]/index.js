@@ -2,6 +2,7 @@ import Link from "next/link"
 import { request } from '../api/getDataFromCMS'
 import ReactMarkdown from "react-markdown"
 import FadeCarousel from "../../components/FadeCarousel"
+import FadeCarouselMob from "../../components/FadeCarouselMob"
 import { useEffect } from "react"
 import {FullsizeMedium} from "../../components/FullsizeMedium";
 import {MainLayout} from "../../components/MainLayout";
@@ -26,21 +27,28 @@ export default function Index({typeface}) {
                 </div>
                 <div>{typeface.releaseTitle}</div>
             </div>
-            <div className="slug-buy">
-                <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
-                    <button className="pink">Buy</button>
-                </Link>
-            </div>
-
-            <div className="slug-carousel">
-                {width > 768
-                    ?
-                        (<FadeCarousel media={typeface.aboutMedia}/>)
-                    :
-                        (<FadeCarousel media={typeface.aboutMediaMobile}/>)
-                }
-            </div>
-
+            {width > 768
+                ?
+                    (<>
+                        <div className="slug-buy">
+                            <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
+                                <button className="pink">Buy</button>
+                            </Link>
+                        </div>
+                        <div className="slug-carousel">
+                            <FadeCarousel media={typeface.aboutMedia}/>
+                        </div>
+                    </>)
+                :
+                    (<div className="slug-carousel">
+                        <FadeCarouselMob media={typeface.aboutMediaMobile}/>
+                        <div className="slug-buy">
+                            <Link href={`/[slug]/buy`} as={`/${typeface.slug}/buy`}>
+                                <button className="pink">Buy</button>
+                            </Link>
+                        </div>
+                    </div>)
+            }
             <div className='wrapper'>
                 <div className="slug-buttons">
                     <form action={typeface.specimen.url} target='_blank'>

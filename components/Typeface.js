@@ -3,10 +3,10 @@ import React, { useState, useEffect, useContext } from "react"
 import { Font } from "./Font"
 import { FontFamily } from "./FontFamily"
 import { Total } from "./Total"
-import Dropdown from "react-dropdown";
-import options from "../countries.json";
+import useWindowDimensions from "./useWindowDimensions";
 
 export function Typeface({typeface}) {
+    const { height, width } = useWindowDimensions();
     const { product, storeProduct, resetProduct } = useContext(ProductContext)
 
     const defaultProduct = {
@@ -135,10 +135,18 @@ export function Typeface({typeface}) {
                                 )
                             })}
                         </select>
-                        <p>
-                            None of the above licenses cover your use case? <br/>
-                            <a href="mailto:info@kyivtypefoundry.com">Contact us</a> for more licensing options (logos, broadcasting, digital publishing, …)
-                        </p>
+                        {width > 375
+                            ?
+                                (<p>
+                                    None of the above licenses cover your use case? <br/>
+                                    <a href="mailto:info@kyivtypefoundry.com">Contact us</a> for more licensing options (logos, broadcasting, digital publishing, …)
+                                </p>)
+                            :
+
+                                (<p>
+                                    None of the above licenses cover your use case? <a href="mailto:info@kyivtypefoundry.com">Contact us</a> for more licensing options (logos, broadcasting, digital publishing, …)
+                                </p>)
+                        }
                     </div>
                 </div>
             </div>

@@ -19,7 +19,15 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 50px);
+  @include xs {
+    padding-top: 38px;
+    min-height: calc(100vh - 88px);
+  }
+
+  @include m {
+    padding-top: 0;
+    min-height: calc(100vh - 50px);
+  }
 }
 
 a {
@@ -156,20 +164,27 @@ nav.menu-opened {
 // Wrapper
 .wrapper {
   margin: 0 auto;
-  padding-bottom: 200px;
   position: relative;
 
   @include xs {
-    width: 87vw;
+    width: 100vw;
+    padding: 0 20px 112px 20px;
   }
 
   @include m {
     width: $wrapper-width;
+    padding-bottom: 200px;
   }
 }
 
 .with-right-border {
-  border-right: 2px solid black;
+  @include xs {
+    border-right: 0;
+  }
+
+  @include m {
+    border-right: 2px solid black;
+  }
 }
 
 .wrapper a {
@@ -190,21 +205,30 @@ nav.menu-opened {
 // Footer
 .footer {
   width: calc(100vw - (100vw - 100%));
-  padding: 10px 20px 15px 20px;
   font-size: 14px;
   letter-spacing: 0.2px;
-  //position: fixed;
-  //bottom: 10px;
-}
 
-.footer div {
-  display: inline-block;
-}
+  @include xs {
+    padding: 12px 0 15px 0;
 
-.footer > div:last-child {
-  float: right;
-}
+    & div {
+      display: block;
+      text-align: center;
+    }
+  }
 
+  @include m {
+    padding: 10px 20px 15px 20px;
+
+    & div {
+      display: inline-block;
+    }
+
+    & div:last-child {
+      float: right;
+    }
+  }
+}
 
 // Buttons
 button {
@@ -317,7 +341,6 @@ button:disabled {
   border: 0;
   cursor: pointer;
 
-  width: 214px;
   height: 30px;
   padding: 0 0 0 20px;
 
@@ -332,16 +355,25 @@ button:disabled {
   background-repeat: no-repeat, repeat;
   background-position: right 20px top 50%, 0 0;
   transition: 0.25s;
+
+  &:hover {
+    filter: contrast(105%);
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  @include xs {
+    width: 100%;
+  }
+
+  @include l {
+    width: 214px;
+  }
 }
 
-.dropdown:hover {
-  filter: contrast(105%);
-}
-
-.dropdown:focus {
-  border: none;
-  outline: none;
-}
 
 // PAGES
 // Homepage
@@ -377,10 +409,22 @@ button:disabled {
 
 // Slug
 .slug-nav {
-  padding: 7px 20px;
   display: flex;
-  position:relative;
   z-index: 1;
+
+
+  @include xs {
+    top: 52px;
+    left: 20px;
+    position: absolute;
+  }
+
+  @include m {
+    top: 0;
+    left: 0;
+    padding: 7px 20px;
+    position: relative;
+  }
 }
 
 .violet {
@@ -401,55 +445,104 @@ button:disabled {
 }
 
 .slug-buy {
-  position: fixed;
   z-index: 1;
-  top: 53px;
-  right: 8px;
+  position: fixed;
+
+  @include xs {
+    position: absolute;
+    width: 100%;
+    padding: 0 20px;
+    bottom: 25px;
+    top: auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include m {
+    position: fixed;
+    top: 52px;
+    right: 8px;
+    margin: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+  }
 }
 
 // Carousel
 .slug-carousel {
   display: block;
-  width: 100%;
-  height: 100vh;
-  margin-top: -37px;
   background: white;
   filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.25));
   z-index: -9999;
+
+  @include xs {
+    margin-top: 0;
+    height: calc(100vh - 35px);
+  }
+
+  @include m {
+    margin-top: -37px;
+    height: 100vh;
+  }
 }
 
 .card-container {
   & img {
     position: absolute;
-    height: 100vh;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
     z-index: -1;
+  }
+
+  @include xs {
+    display: block;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include m {
+    display: flex;
+
+    & img {
+      width: auto !important;
+      height: 100vh;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: 0 !important;
+    }
   }
 }
 
 .slug-buttons {
   width: 100%;
-  margin-top: 25px;
 
   @include xs {
     display: block;
+    margin-top: 40px;
   }
 
   @include m {
     display: flex;
+    margin-top: 25px;
   }
 }
 
 .slug-buttons form:last-child {
   @include xs {
     margin-left: 0;
+    margin-top: 10px;
   }
 
   @include m {
     margin-left: 8px;
+    margin-top: 0;
   }
 }
 
@@ -457,7 +550,7 @@ button:disabled {
   border-bottom: 2px solid black;
 
   @include xs {
-    padding: 80px 0 30px 0;
+    padding: 50px 0 30px 0;
   }
 
   @include m {
@@ -505,8 +598,25 @@ button:disabled {
 }
 
 // Buy
-.buy, .total {
-  margin: 50px 40px 0 0;
+.buy  {
+  @include xs {
+    margin: 70px 0 0 0;
+  }
+
+  @include l {
+    margin: 50px 40px 0 0;
+  }
+}
+
+
+.total {
+  @include xs {
+    margin: 0;
+  }
+
+  @include l {
+    margin: 50px 40px 0 0;
+  }
 }
 
 .buy {
@@ -514,19 +624,45 @@ button:disabled {
 }
 
 .buy-container {
-  display: flex;
-  margin: 20px 0;
+  @include xs {
+    display: block;
+    margin: 50px 0;
+  }
+
+  @include m {
+    display: flex;
+    margin: 50px 0;
+  }
+
+  @include l {
+    display: flex;
+    margin: 20px 0;
+  }
 }
 
 .buy-caption {
-  width: 50%;
   text-transform: lowercase;
   color: #696969;
-  display: flex;
+
+  @include xs {
+    width: 100%;
+    display: none;
+  }
+
+  @include l {
+    width: 50%;
+    display: flex;
+  }
 }
 
 .buy-licenses, .buy-users {
-  width: 50%;
+  @include xs {
+    width: 100%;
+  }
+
+  @include l {
+    width: 50%;
+  }
 }
 
 .buy-licenses-fonts, .buy-licenses-fontfamily, .buy-licenses-fonts-checkboxes{
@@ -541,34 +677,37 @@ button:disabled {
   margin: 2px 6px 0 auto;
 
   input[type='checkbox'] {
-    margin-left: 70px;
-  }
+    &:after {
+      line-height: 1.5em;
+      content: '';
+      cursor: pointer !important;
+      display: inline-block;
+      margin-top: -6px;
+      margin-left: -6px;
+      width: 26px;
+      height: 26px;
+      background: #ECECEC;
+      box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
+      border-radius: 16px;
+      transition: 0.25s;
+    }
 
-  input[type='checkbox']:after{
-    line-height: 1.5em;
-    content: '';
-    cursor: pointer !important;
-    display: inline-block;
-    margin-top: -6px;
-    margin-left: -6px;
-    width: 26px;
-    height: 26px;
-    background: #ECECEC;
-    //opacity: 0.7;
-    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
-    border-radius: 16px;
-    transition: 0.25s;
-  }
+    &:hover:after {
+      filter: contrast(108%);
+    }
 
-  input[type='checkbox']:hover:after{
-    filter: contrast(108%);
-    //background: #ECECEC;
-    //box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
-  }
+    &:checked:after {
+      background: #FF6B00;
+      box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+    }
 
-  input[type='checkbox']:checked:after{
-    background: #FF6B00;
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.15), inset -4px -4px 2px rgba(255, 255, 255, 0.7);
+    @include xs {
+      margin-left: 43px;
+    }
+
+    @include l {
+      margin-left: 70px;
+    }
   }
 
   .Desktop:checked:after {
@@ -589,26 +728,56 @@ button:disabled {
 
 .buy-users {
   margin: -4px 0;
-}
 
-.buy-users p {
-  color: #696969;
-}
+  & p {
+    color: #696969;
 
-.buy-users a {
-  text-decoration: none;
-  border-bottom: 2px solid #696969;
-  transition: 0.25s;
-}
+    @include xs {
+      font-size: 14px;
+      line-height: 1.4;
+    }
 
-.buy-users a:hover {
-  color: #696969 !important;
-  text-decoration: none;
-  border-bottom: 2px solid rgba(0,0,0,0);
+    @include l {
+      font-size: 17px;
+      line-height: 22px;
+    }
+  }
+
+  & a {
+    text-decoration: none;
+    transition: 0.25s;
+
+    @include xs {
+      border-bottom: 1px solid #696969;
+    }
+
+    @include l {
+      border-bottom: 2px solid #696969;
+    }
+  }
+
+  & a:hover {
+    color: #696969 !important;
+    text-decoration: none;
+
+    @include xs {
+      border-bottom: 1px solid rgba(0,0,0,0);
+    }
+
+    @include l {
+      border-bottom: 2px solid rgba(0,0,0,0);
+    }
+  }
 }
 
 .total button {
-  margin: -4px 0 0 auto;
+  @include xs {
+    margin: 34px 0 0 auto;
+  }
+
+  @include m {
+    margin: -4px 0 0 auto;
+  }
 }
 
 .buy-licenses-labels {
@@ -625,8 +794,14 @@ button:disabled {
     padding-right: 2px;
   }
 
-  .desktop-web > div{
-    margin-left: 58px;
+  .desktop-web > div {
+    @include xs {
+      margin-left: 30px;
+    }
+
+    @include l {
+      margin-left: 58px;
+    }
   }
 }
 
@@ -886,11 +1061,6 @@ input[type=radio] {
   }
 }
 
-//@media only screen and (max-width: 600px) {
-//  form {
-//    width: 80vw;
-//  }
-//}
 
 // Success
 .success {
