@@ -5,8 +5,11 @@ import FadeCarousel from '../../components/FadeCarousel'
 import { useEffect } from "react"
 import {FullsizeMedium} from "../../components/FullsizeMedium";
 import {MainLayout} from "../../components/MainLayout";
+import useWindowDimensions from "../../components/useWindowDimensions";
 
 export default function Index({typeface}) {
+    const { height, width } = useWindowDimensions();
+
     useEffect(()=>{
         document.body.style.backgroundColor = '#FFFFFF'
     },[])
@@ -30,7 +33,12 @@ export default function Index({typeface}) {
             </div>
 
             <div className="slug-carousel">
-                <FadeCarousel media={typeface.aboutMedia}/>
+                {width > 768
+                    ?
+                        (<FadeCarousel media={typeface.aboutMedia}/>)
+                    :
+                        (<FadeCarousel media={typeface.aboutMediaMobile}/>)
+                }
             </div>
 
             <div className='wrapper'>
@@ -86,6 +94,9 @@ query ($slug: String) {
     releaseDate
     about
     aboutMedia {
+      url
+    }
+    aboutMediaMobile {
       url
     }
     footnote
