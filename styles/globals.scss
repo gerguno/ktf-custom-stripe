@@ -459,7 +459,6 @@ button:disabled {
   display: flex;
   z-index: 1;
 
-
   @include xs {
     top: 52px;
     left: 20px;
@@ -476,6 +475,18 @@ button:disabled {
 
 .violet {
   color: #A40089 !important;
+
+  p {
+    margin: 0;
+  }
+
+  & a {
+    border-bottom: 2px solid #A40089;
+  }
+
+  & a:hover {
+    border-bottom: 2px solid rgba(0,0,0,0);
+  }
 }
 
 .slug-nav > div:first-child {

@@ -48,107 +48,105 @@ export default function Cart() {
 
     return (
         <MainLayout title={'Cart • Kyiv Type Foundry'}>
-            <div className="slug-nav violet">
-                {width > 768
-                    ?
-                        (<div>You’re in a few steps away from having completed your order</div>)
-                    :
-                        (<div>Your cart is ready for order completion</div>)
-                }
-
-            </div>
-
             {user.products.length > 0
                 ?
-                    <div className="wrapper">
-                        <div className="cart-items">
+                    (<>
+                         <div className="slug-nav violet">
                             {width > 768
                                 ?
-                                    user.products.map((up, key) => {
-                                        return (
-                                            <div className="cart-item">
-                                                <div className="cart-item-left">
-                                                    <div>{up.name}</div>
-                                                    <div>{up.license}</div>
-                                                    <div>{up.users}</div>
-                                                </div>
-                                                <div className="cart-item-right">
-                                                    <div>{up.price} Eur</div>
-                                                    <div>
-                                                        <a onClick={(e) => {
-                                                            removeProduct(e, key)
-                                                        }}>
-                                                            <img src="/close.svg" alt=""/>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    )})
+                                (<div>You’re in a few steps away from having completed your order</div>)
                                 :
-                                    user.products.map((up, key) => {
-                                        return (
-                                            <div className="cart-item">
-                                                <div className="cart-item-left">
-                                                    {up.name}, {width < 768 && (<br/>)} {up.license}, {width < 768 && (<br/>)} {up.users}
-                                                </div>
-                                                <div className="cart-item-right">
-                                                    <div>{up.price} Eur</div>
-                                                    <div>
-                                                        <a onClick={(e) => {
-                                                            removeProduct(e, key)
-                                                        }}>
-                                                            <img src="/close.svg" alt=""/>
-                                                        </a>
+                                (<div>Your cart is ready for order completion</div>)
+                            }
+                        </div>
+                        <div className="wrapper">
+                            <div className="cart-items">
+                                {width > 768
+                                    ?
+                                        user.products.map((up, key) => {
+                                            return (
+                                                <div className="cart-item">
+                                                    <div className="cart-item-left">
+                                                        <div>{up.name}</div>
+                                                        <div>{up.license}</div>
+                                                        <div>{up.users}</div>
+                                                    </div>
+                                                    <div className="cart-item-right">
+                                                        <div>{up.price} Eur</div>
+                                                        <div>
+                                                            <a onClick={(e) => {
+                                                                removeProduct(e, key)
+                                                            }}>
+                                                                <img src="/close.svg" alt=""/>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    )})
-                            }
+                                        )})
+                                    :
+                                        user.products.map((up, key) => {
+                                            return (
+                                                <div className="cart-item">
+                                                    <div className="cart-item-left">
+                                                        {up.name}, {width < 768 && (<br/>)} {up.license}, {width < 768 && (<br/>)} {up.users}
+                                                    </div>
+                                                    <div className="cart-item-right">
+                                                        <div>{up.price} Eur</div>
+                                                        <div>
+                                                            <a onClick={(e) => {
+                                                                removeProduct(e, key)
+                                                            }}>
+                                                                <img src="/close.svg" alt=""/>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        )})
+                                }
 
-                        </div>
-                        <div className="cart-total">
-                            <div className="cart-total-field">
-                                <div>
-                                    VAT{user.tax}%*
+                            </div>
+                            <div className="cart-total">
+                                <div className="cart-total-field">
+                                    <div>
+                                        VAT{user.tax}%*
+                                    </div>
+                                    <div>
+                                        {(user.subtotal * vat).toFixed(2)} Eur
+                                    </div>
                                 </div>
-                                <div>
-                                    {(user.subtotal * vat).toFixed(2)} Eur
+                                <div className="cart-total-field">
+                                    <div>
+                                        Subtotal
+                                    </div>
+                                    <div>
+                                        {user.subtotal} Eur
+                                    </div>
+                                </div>
+                                <div className="cart-total-field">
+                                    <div>
+                                        TOTAL
+                                    </div>
+                                    <div>
+                                        {user.total} Eur
+                                    </div>
                                 </div>
                             </div>
-                            <div className="cart-total-field">
-                                <div>
-                                    Subtotal
-                                </div>
-                                <div>
-                                    {user.subtotal} Eur
-                                </div>
-                            </div>
-                            <div className="cart-total-field">
-                                <div>
-                                    TOTAL
-                                </div>
-                                <div>
-                                    {user.total} Eur
-                                </div>
-                            </div>
-                        </div>
 
-                        <Elements stripe={promise}>
-                            <CheckoutForm />
-                        </Elements>
-                    </div>
+                            <Elements stripe={promise}>
+                                <CheckoutForm />
+                            </Elements>
+                        </div>
+                    </>)
                 :
-                    <div className="wrapper">
-                        <p>
-                            {`The cart is now empty. `}
-                            <Link href={'/'}>
-                                <a>
-                                    Select some products
-                                </a>
-                            </Link>
-                            {` to buy before checking out.`}
-                        </p>
-                    </div>
+                    width > 768
+                        ?
+                            (<div className="slug-nav violet">
+                                <p>{`The cart is now empty. `}<Link href={'/'}><a>Select some products</a></Link>{` to buy before checking out.`}</p>
+                            </div>)
+                        :
+                            (<div className="slug-nav violet">
+                                <p>{`The cart is now empty. `}</p>
+                            </div>)
             }
         </MainLayout>
     )
