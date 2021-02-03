@@ -567,28 +567,26 @@ button:disabled {
     left: 0;
     right: 0;
     z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
   }
 
   @include xs {
     display: block;
-
-    & img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   }
 
   @include m {
     display: flex;
 
-    & img {
-      width: auto !important;
-      height: 100vh;
-      margin-left: auto;
-      margin-right: auto;
-      object-fit: 0 !important;
-    }
+    //& img {
+    //  width: auto !important;
+    //  height: 100vh;
+    //  margin-left: auto;
+    //  margin-right: auto;
+    //  object-fit: 0 !important;
+    //}
   }
 }
 
@@ -643,7 +641,7 @@ button:disabled {
     column-count: 1;
   }
 
-  @include l {
+  @include xl {
     column-count: 2;
     column-gap: 40px;
   }
