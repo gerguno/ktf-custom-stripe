@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { request } from '../api/getDataFromCMS'
 import ReactMarkdown from "react-markdown"
-import FadeCarousel from '../../components/FadeCarousel'
+import FadeCarousel from "../../components/FadeCarousel"
 import { useEffect } from "react"
 import {FullsizeMedium} from "../../components/FullsizeMedium";
 import {MainLayout} from "../../components/MainLayout";
