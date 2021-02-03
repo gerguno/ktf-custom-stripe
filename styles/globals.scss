@@ -43,18 +43,27 @@ a:hover {
 // Menu
 nav {
   position: fixed;
-  width: 377px;
+  width: 375px;
   height: 38px;
   background: #EFEFEF;
-  border-radius: 4px 0px 4px 4px;
   right: 0;
   z-index: 999;
   overflow: hidden;
   transition: 0.25s;
-}
 
-nav > div {
-  height: 30px;
+  @include xs {
+    border-radius: 0 0 8px 8px;
+    height: 42px;
+  }
+
+  @include m {
+    border-radius: 6px 0px 6px 6px;
+    height: 38px;
+  }
+
+  & > div {
+    height: 30px;
+  }
 }
 
 #bar {
@@ -62,7 +71,13 @@ nav > div {
 }
 
 #bar-logo {
-  margin: 9px 0 0 9px;
+  @include xs {
+    margin: 11px 0 0 9px;
+  }
+
+  @include m {
+    margin: 9px 0 0 9px;
+  }
 }
 
 #bar-logo a:hover {
@@ -76,9 +91,16 @@ nav > div {
 
 #bar-cart {
   border: 0 !important;
-  margin: 1px 12px 0 0 ;
   color: #000000;
   transition: 0.25s;
+
+  @include xs {
+    margin: 3px 12px 0 0;
+  }
+
+  @include m {
+    margin: 1px 12px 0 0;
+  }
 }
 
 #bar-cart:hover {
@@ -107,6 +129,17 @@ nav > div {
   text-decoration: none;
   border: 0;
   transition: 0.25s;
+
+  @include xs {
+    width: 30px;
+    height: 30px;
+
+  }
+
+  @include m {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 #bar-menu-open:hover {
@@ -151,7 +184,7 @@ nav.menu-opened {
 
 #menu-opts div {
   height: 30px;
-  padding: 20px 8px;
+  padding: 20px 10px;
 }
 
 .help-to-close {
@@ -449,14 +482,25 @@ button:disabled {
   margin: 1px 12px 0 0;
 }
 
-.close a {
-  opacity: 1;
-  transition: 0.25s;
+.close {
+  & a {
+    opacity: 1;
+    transition: 0.25s;
+  }
+
+  & a:hover {
+    opacity: 0.5;
+  }
+
+  @include xs {
+    display: none;
+  }
+
+  @include m {
+    display: block
+  }
 }
 
-.close a:hover {
-  opacity: 0.5;
-}
 
 .slug-buy {
   position: fixed;
@@ -687,7 +731,14 @@ button:disabled {
 }
 
 .buy-licenses-fonts {
-  padding-bottom: 7px;
+  @include xs {
+    padding-bottom: 12px;
+  }
+
+  @include m {
+    padding-bottom: 7px;
+  }
+
 }
 
 .buy-licenses-fonts-checkboxes {
@@ -699,14 +750,24 @@ button:disabled {
       content: '';
       cursor: pointer !important;
       display: inline-block;
-      margin-top: -6px;
-      margin-left: -6px;
-      width: 26px;
-      height: 26px;
       background: #ECECEC;
       box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.15), inset 4px 4px 2px rgba(255, 255, 255, 0.7);
       border-radius: 16px;
       transition: 0.25s;
+
+      @include xs {
+        margin-top: -8px;
+        margin-left: -8px;
+        width: 30px;
+        height: 30px;
+      }
+
+      @include m {
+        margin-top: -6px;
+        margin-left: -6px;
+        width: 26px;
+        height: 26px;
+      }
     }
 
     &:hover:after {
@@ -740,7 +801,13 @@ button:disabled {
 }
 
 .buy-licenses-fontfamily {
-  margin: 20px 0;
+  @include xs {
+    margin: 30px 0 0 0;
+  }
+
+  @include m {
+    margin: 20px 0;
+  }
 }
 
 .buy-users {
