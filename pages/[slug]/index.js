@@ -16,7 +16,11 @@ export default function Index({typeface}) {
     },[])
 
     return (
-        <MainLayout title={`${typeface.releaseTitle} • Kyiv Type Foundry`}>
+        <MainLayout
+            title={`${typeface.releaseTitle} • Kyiv Type Foundry`}
+            seoTitle={typeface.seoTitle}
+            seoDescription={typeface.seoDescription}
+        >
             <div className="slug-nav">
                 <div className="close">
                     <Link href={`/`}>
@@ -99,7 +103,8 @@ query ($slug: String) {
     id
     slug
     releaseTitle
-    releaseDate
+    seoTitle
+    seoDescription
     about
     aboutMedia {
       url

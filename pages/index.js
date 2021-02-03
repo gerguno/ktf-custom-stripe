@@ -46,7 +46,6 @@ export async function getStaticProps() {
     id
     slug
     releaseTitle
-    releaseDate
     specimen {
       url
     }
