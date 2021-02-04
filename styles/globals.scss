@@ -16,7 +16,6 @@ body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   margin: auto;
-  -webkit-text-size-adjust: none;
 }
 
 main {
@@ -1022,8 +1021,11 @@ button:disabled {
     }
 
     @include m {
-      display: flex;
-      gap: 10px;
+      //display: flex;
+      //gap: 10px;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
