@@ -1027,6 +1027,7 @@ button:disabled {
   }
 
   input {
+    -webkit-appearance: none;
     width: 100%;
     height: 40px;
     background: #F5F5F5;
