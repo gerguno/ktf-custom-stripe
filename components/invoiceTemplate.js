@@ -319,10 +319,10 @@ export default function InvoiceTemplate ({ order }) {
                         {' '}
                     </Text>
                     <Text>
-                        invoice date: {date()}
+                        date: {date()}
                     </Text>
                     <Text>
-                        invoice-Nr.:    {order.orderID}
+                        invoice-nr.: {order.orderID}
                     </Text>
                     <Text>
                         {' '}

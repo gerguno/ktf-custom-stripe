@@ -1,8 +1,12 @@
 import nodemailer from "nodemailer"
+import MailBody from "../../components/mailBody"
+import ReactDOMServer from 'react-dom/server'
 
 // async..await is not allowed in global scope, must use a wrapper
 export default async function Mailer(req, res) {
     const { order, filenameForEmail } = req.body
+
+    const mailBody = ReactDOMServer.renderToString(<MailBody order={order}/>)
 
     // // Generate test SMTP service account from ethereal.email
     // // Only needed if you don't have a real mail account for testing
@@ -23,9 +27,9 @@ export default async function Mailer(req, res) {
     let info = await transporter.sendMail({
         from: '"Kyiv Type Foundry 🤝" <info@kyivtypefoundry.com>', // sender address
         to: order.customer.email, // list of receivers
-        subject: `Invoice-Nr: ${order.orderID}`, // Subject line
+        subject: `Paid Invoice-Nr.: ${order.orderID}`, // Subject line
         text: "Congratulations!", // plain text body
-        html: '<b>Congratulations!</b>', // html body
+        html: mailBody, // html body
         attachments: [
             {
                 path:

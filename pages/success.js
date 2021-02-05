@@ -196,7 +196,7 @@ export default function Success() {
                     <div className="success-info">
                         <div>
                             <p>
-                                invoice-Nr.: {order.orderID} <br/>
+                                invoice-nr.: {order.orderID} <br/>
                                 <GetPdf order={order}/>
                             </p>
                             <p>
