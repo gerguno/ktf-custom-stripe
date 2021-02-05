@@ -459,6 +459,14 @@ button:disabled {
   display: flex;
   z-index: 1;
 
+  & div:nth-child(2) {
+    margin-right: 6px;
+  }
+
+  & div:nth-child(3) {
+    color: #9A9A9A;
+  }
+
   @include xs {
     top: 52px;
     left: 20px;

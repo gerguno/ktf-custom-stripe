@@ -30,6 +30,7 @@ export default function Index({typeface}) {
                     </Link>
                 </div>
                 <div>{typeface.releaseTitle}</div>
+                <div>{typeface.releaseFonts}</div>
             </div>
             {width > 768
                 ?
@@ -103,6 +104,7 @@ query ($slug: String) {
     id
     slug
     releaseTitle
+    releaseFonts
     seoTitle
     seoDescription
     about
