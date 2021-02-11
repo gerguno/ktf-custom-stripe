@@ -1342,3 +1342,122 @@ input[type=radio] {
     border-bottom: 0 !important;
   }
 }
+
+.about {
+  margin-top: 10px;
+
+  p {
+    margin-top: 0;
+  }
+
+  .about-section {
+    display: block;
+    padding: 50px 0;
+    border-bottom: 2px solid black;
+
+    @include xs {
+      padding-right: 0;
+      width: 100%;
+    }
+
+    @include m {
+      display: flex;
+    }
+  }
+  .about-section:last-child {
+    border-bottom: 0;
+  }
+
+  .about-section-caption {
+    color: #696969;
+
+    @include xs {
+      padding-right: 0;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    @include m {
+      padding-right: 40px;
+      width: 30%;
+    }
+
+    @include xl {
+      padding-right: 140px;
+      width: 15%;
+    }
+  }
+
+  .about-section-text-main {
+    @include xs {
+      padding-top: 0;
+    }
+
+    @include m {
+      padding-top: 20px;
+    }
+  }
+
+  .about-section-text {
+    @include xs {
+      padding-right: 0;
+      width: 100%;
+    }
+
+    @include m {
+      padding-right: 40px;
+      width: 70%;
+    }
+
+    @include xl {
+      padding-right: 140px;
+      width: 85%;
+    }
+  }
+
+  .freak {
+    @include xs {
+      display: block;
+    }
+
+    @include xl {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      gap: 40px;
+    }
+  }
+
+  a {
+    border-bottom: 2px solid rgba(0,0,0,0) !important;
+  }
+
+  a:hover {
+    border-bottom: 2px solid black !important;
+  }
+
+  .about-contacts {
+    width: calc((100% / 2) - 20px);
+
+    @include xs {
+      margin-left: 0;
+    }
+
+    @include xl {
+      margin-left: calc((100% / 2) + 40px);
+    }
+  }
+}
+
+.faq {
+  margin-top: 10px;
+
+  .faq-item {
+    border-bottom: 2px solid black;
+    padding: 50px 0 40px 0;
+
+    .faq-answer {
+      color: #696969;
+    }
+  }
+}
+

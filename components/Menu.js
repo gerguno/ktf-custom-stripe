@@ -90,9 +90,9 @@ export default function Menu() {
                         </Link>
                     </div>
                     <div>
-                        <Link href={`/licenses`}>
+                        <Link href={`/faq`}>
                             <a>
-                                Licenses
+                                FAQ
                             </a>
                         </Link>
                     </div>

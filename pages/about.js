@@ -3,75 +3,78 @@ import { request } from './api/getDataFromCMS';
 import { useEffect, useState } from "react";
 import { MainLayout } from "../components/MainLayout"
 import useWindowDimensions from "../components/useWindowDimensions"
+import ReactMarkdown from "react-markdown";
 
 
 export default function About({about}) {
-    // const { height, width } = useWindowDimensions();
-    console.log(about);
-
     useEffect(() => {
         document.body.style.backgroundColor = '#FFFFFF'
     },[])
 
     return (
         <MainLayout>
-            <div className="about-section">
-                <div className="about-section-caption">
-                    Profile
-                </div>
-                <div>
-                    <p>
-                        {about.profile.intro}
-                    </p>
-                    <p>
-                        {about.profile.content}
-                    </p>
-                    <p>
-                        {about.profile.email}
-                    </p>
-                    <p>
-                        {about.profile.phoneNumber}
-                    </p>
+            <div className="slug-nav">
+                <div>About</div>
+            </div>
+            <div className="wrapper">
+                <div className="about">
+                    <div className="about-section">
+                        <div className="about-section-caption">
+                            Profile
+                        </div>
+                        <div className="about-section-text">
+                            <p>
+                                {about.profile.intro}
+                            </p>
+                            <div className="about-section-text-main">
+                                <div className="freak">
+                                    <div>
+                                        <ReactMarkdown source={about.profile.contentCol1}/>
+                                    </div>
+                                    <div>
+                                        <ReactMarkdown source={about.profile.contentCol2}/>
+                                    </div>
+                                </div>
+                                <div className="about-contacts">
+                                    <div>
+                                        <Link href={`mailto: ${about.profile.email}`}>
+                                            <a>email</a>
+                                        </Link>
+                                    </div>
+                                    <div>
+                                        <Link href={`tel: ${about.profile.phoneNumber}`}>
+                                            <a>{about.profile.phoneNumber}</a>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="about-section">
+                        <div className="about-section-caption">
+                            Approach
+                        </div>
+                        <div className="about-section-text">
+                            <ReactMarkdown source={about.approach.content}/>
+                        </div>
+                    </div>
+                    <div className="about-section">
+                        <div className="about-section-caption">
+                            Founders
+                        </div>
+                        <div className="about-section-text">
+                            <div className="freak">
+                                <div>
+                                    <ReactMarkdown source={about.founders.contentCol1}/>
+                                </div>
+                                <div>
+                                    <ReactMarkdown source={about.founders.contentCol2}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className="about-section">
-                <div className="about-section-caption">
-                    Approach
-                </div>
-                <div>
-                    <p>
-                        {about.profile.content}
-                    </p>
-                </div>
-            </div>
-            <div className="about-section">
-                <div className="about-section-caption">
-                    Founders
-                </div>
-                <div>
-                    <p>
-                        {about.founders.content}
-                    </p>
-                </div>
-            </div>
-            {/*{typefaces.map(t => {*/}
-            {/*    return (*/}
-            {/*        <>*/}
-            {/*            <div className="home-media">*/}
-            {/*                <Link href={`/[slug]`} as={`/${t.slug}`}>*/}
-            {/*                    <a>*/}
-            {/*                        {width > 768*/}
-            {/*                            ?*/}
-            {/*                            (<FullsizeMedium src={t.media.url} ext={t.media.mimeType}/>)*/}
-            {/*                            :*/}
-            {/*                            (<FullsizeMedium src={t.mediaMobile.url} ext={t.mediaMobile.mimeType}/>)*/}
-            {/*                        }*/}
-            {/*                    </a>*/}
-            {/*                </Link>*/}
-            {/*            </div>*/}
-            {/*        </>*/}
-            {/*    )*/}
-            {/*})}*/}
         </MainLayout>
     )
 }
@@ -83,7 +86,8 @@ export async function getStaticProps() {
   abouts {
     profile {
       intro
-      content
+      contentCol1
+      contentCol2
       email
       phoneNumber
     }
@@ -94,7 +98,8 @@ export async function getStaticProps() {
       }
     }
     founders {
-      content
+      contentCol1
+      contentCol2
     }
   }
 }
