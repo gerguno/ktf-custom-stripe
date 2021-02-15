@@ -32,6 +32,7 @@ export default function Cart() {
 
     useEffect(() => {
         calcTotal()
+        document.body.style.backgroundColor = '#FFFFFF'
     }, [])
 
     const removeProduct = (e, key) => {
