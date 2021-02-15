@@ -10,7 +10,7 @@ export default function Home({typefaces}) {
     const { height, width } = useWindowDimensions();
 
     useEffect(() => {
-        document.body.style.backgroundColor = '#FFFFFF'
+        document.body.style.background = '#FFFFFF'
     },[])
 
   return (

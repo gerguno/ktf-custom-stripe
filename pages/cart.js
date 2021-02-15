@@ -32,7 +32,6 @@ export default function Cart() {
 
     useEffect(() => {
         calcTotal()
-        document.body.style.backgroundColor = '#FFFFFF'
     }, [])
 
     const removeProduct = (e, key) => {
@@ -140,13 +139,27 @@ export default function Cart() {
                 :
                     width > 768
                         ?
-                            (<div className="slug-nav violet">
-                                <p>{`The cart is now empty. `}<Link href={'/'}><a>Select some products</a></Link>{` to buy before checking out.`}</p>
-                            </div>)
+                            (
+                                <>
+                                     <div className="cart-empty">
+                                         <img src="./cart-empty.png"/>
+                                     </div>
+                                     <div className="slug-nav difference">
+                                        <p>{`The cart is now empty. `}<Link href={'/'}><a>Select some products</a></Link>{` to buy before checking out.`}</p>
+                                    </div>
+                                </>
+                            )
                         :
-                            (<div className="slug-nav violet">
-                                <p>{`The cart is now empty. `}</p>
-                            </div>)
+                            (
+                                <>
+                                    <div className="cart-empty">
+                                        <img src="./cart-empty-mob.png"/>
+                                    </div>
+                                    <div className="slug-nav difference">
+                                        <p>{`The cart is now empty. `}</p>
+                                    </div>
+                                </>
+                            )
             }
         </MainLayout>
     )
